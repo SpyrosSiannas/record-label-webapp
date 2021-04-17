@@ -13,9 +13,7 @@ First, we have to get the updated files from the repository
 
 Afterwards, we can check the available branches by typing
 
-`git switch `
-
-followed by a double TAB so that it shows all available branches
+`git branch -a`
 
 Then, we select which branch we want to view and go there by filling the name
 
