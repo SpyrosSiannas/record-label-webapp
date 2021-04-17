@@ -48,4 +48,7 @@ And finally, push the changes to github
 
 Note
 ---
-Try not to switch branches while making changes since that can lead to confusion. Make changes, commit, push and _then_ change branches
+Try not to switch branches while making changes since that can lead to confusion. Make changes, commit, push and _then_ change branches.
+
+If you want to copy a remote branch, do this
+`git checkout -b [branch-name] origin/[branch-name]
