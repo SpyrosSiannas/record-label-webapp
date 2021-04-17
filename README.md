@@ -21,7 +21,7 @@ Then, we select which branch we want to view and go there by filling the name
 
 `git switch [branch-name]`
 
-After this, we make sure we have the latest version of the branch by
+After this, we make sure we have pulled the changes to our local branch
 
 `git pull origin [branch name]`
 
