@@ -3,6 +3,9 @@ A repository for the university project on web design
 
 Steps for updating and viewing the repo
 ---
+Initally, make sure you are in the develop branch
+`git switch develop`
+
 First, we have to get the updated files from the repository
 
 `git fetch --all`
