@@ -17,6 +17,10 @@ Then, we select which branch we want to view and go there by filling the name
 
 `git switch [branch-name]`
 
+After this, we make sure we have the latest version of the branch by
+
+`git pull origin [branch name]`
+
 Now, we can open the directory in VSCode and setup the live server
 
 `code .`
@@ -35,4 +39,9 @@ Then commit the changes with a short description
 
 And finally, push the changes to github
 
-`git push origin [branch-name]`
+`git push origin [branch-name]` 
+
+
+Note
+---
+Try not to switch branches while making changes since that can lead to confusion. Make changes, commit, push and _then_ change branches
