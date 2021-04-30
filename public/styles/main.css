@@ -1,6 +1,8 @@
 body {
     background-color: #F9F2E8;
     font-family: 'Abhaya Libre';
+    background: url("/img/Coffee Stain 1.png") 13% 0% no-repeat;
+    background-size: 550px, 250px, auto;
 }
 
 .main-panel {
