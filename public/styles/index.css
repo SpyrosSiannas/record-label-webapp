@@ -2,15 +2,34 @@
     margin-bottom: 0.7rem;
 }
 
-#news-header {
+.homepage-header {
+    padding-top: 0.7rem;
     text-align: center;
+    border-top: 4px solid black;
+    border-bottom: 4px solid black;
 }
 
-#news-header p {
+.homepage-header p {
     font-size: 40px;
 }
 
 #main-news {
-    font-size: 22px;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 24px;
     font-weight: 400;
+}
+
+#playlists {
+    margin-top: 1rem;
+}
+
+@media only screen and (max-width: 600px){
+    #news-header p {
+        font-size: 30px;
+        font-weight: 600;
+    }
+    #main-news {
+        font-size: 20px
+    }
 }
