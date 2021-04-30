@@ -1,0 +1,99 @@
+#header-container {
+    display: flex;
+}
+
+#header-container div {
+    margin: auto;
+}
+
+#navbar li {
+    max-height: 70px;
+}
+
+#navbar a {
+    height: 100%;
+}
+
+#navbar-container {
+    align-items: flex-end;
+}
+
+#navbar-top {
+    padding-top: 20px;
+    justify-content: flex-end;
+    margin-bottom: -35px;
+}
+
+#navbar-bottom {
+    margin-top: 20px;
+    justify-content: flex-end;
+    margin-bottom: 0px;
+}
+
+#navbar-bottom a::before{
+    content: "•";
+    padding-right: 5px;
+    font-size: 50px;
+    vertical-align: -14%;
+}
+
+#navbar-container  a {
+    color: black;
+    font-size: 22px;
+    font-weight: 500;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: all ease-in-out 0.3s;
+}
+
+#navbar-container a:hover {
+    border-color: black;
+}
+
+.navbar-brand {
+    text-overflow: ellipsis;
+    padding: 0;
+}
+
+.site-title {
+    font-family: "DM Serif Display";
+    font-style: normal;
+    font-weight: 1000;
+    font-size: 40px;
+    width: 230px;
+    color: black;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+@media only screen and (max-width: 600px){
+    .main-panel{
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    .site-title{
+        font-size: 30px;
+        width: 150px;
+    }
+
+    .navbar-toggler-icon{
+        font-size: 0.8em;
+    }
+}
+
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.site-title a {
+    text-decoration: none;
+    color: black;
+}
+
+.site-title:hover {
+    color: black;
+    cursor: pointer;
+}
