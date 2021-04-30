@@ -9,3 +9,8 @@
 #news-header p {
     font-size: 40px;
 }
+
+#main-news {
+    font-size: 22px;
+    font-weight: 400;
+}
