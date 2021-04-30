@@ -1,17 +1,17 @@
 body {
     background-color: #F9F2E8;
-    font-family: 'DM Serif Display';
+    font-family: 'Abhaya Libre';
 }
 
 .main-panel {
     margin-top: 3%;
-    margin-left: 15%;
-    margin-right: 15%;
+    margin-left: 20%;
+    margin-right: 20%;
 }
 
-.main-panel > #hr {
+.main-panel > .hr {
     margin-top: 0;
-    margin-bottom: 1rem;
-    border: 3px solid black;
+    margin-bottom: 0.7rem;
+    border: 2px solid black;
     background-color: black;
 }
