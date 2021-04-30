@@ -1,0 +1,22 @@
+{
+  "name": "record-label-webapp",
+  "version": "1.0.0",
+  "description": "Record Label Webapp",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SpyrosSiannas/record-label-webapp.git"
+  },
+  "author": "Spyros Siannas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SpyrosSiannas/record-label-webapp/issues"
+  },
+  "homepage": "https://github.com/SpyrosSiannas/record-label-webapp#readme",
+  "engines": {
+    "node": "14.x"
+  }
+}
