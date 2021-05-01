@@ -16,8 +16,35 @@
 #main-news {
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#main-news p {
+    line-height: 30px;
+    margin-bottom: 0.5rem;
     font-size: 24px;
     font-weight: 400;
+    min-width: 200px;
+
+}
+
+#left-article {
+    flex:42;
+    border-right: 3px solid black;
+    padding-right: 0.5rem;
+}
+
+#left-article p {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+}
+
+#right-article {
+    flex: 58;
+    margin-left: 1rem;
 }
 
 #playlists {
@@ -28,12 +55,27 @@
     margin-top: 1rem;
 }
 
+@media only screen and (max-width: 730px){
+    #left-article {
+        min-width: 230px;
+        margin-top: 0.5rem;
+        border-right: 0px;
+        border-bottom: 3px solid black;
+    }
+    
+    #right-article {
+        margin-left: 0;
+        margin-top: 0.5rem;
+    }
+}
+
 @media only screen and (max-width: 600px){
     .homepage-header p {
         font-size: 30px;
         font-weight: 600;
     }
-    #main-news {
+
+    #main-news p {
         font-size: 20px
     }
 }
