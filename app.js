@@ -11,8 +11,6 @@ app.engine('hbs', exphbs({
     helpers: require('./config/hbs-helpers.js')
 }));
 
-
-
 app.use(express.static(__dirname + '/public'));
 /** Heroku has the environment variable set 
     but the way we locally run the server, we don't
