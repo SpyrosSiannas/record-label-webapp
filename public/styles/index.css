@@ -108,12 +108,11 @@ img.portrait {
         border-bottom: 3px solid black;
     }
 
-
     #right-article img{
+        margin-left: 10px;
         max-width: 60%;
-        min-width: 40%;
-        max-height: 60%;
-        min-height: 35%;
+        min-width: 25%;
+        max-height: 65%;
     }
 
     #left-article p{
@@ -121,18 +120,31 @@ img.portrait {
     }
 }
 
+@media only screen and (max-width: 900px){
+    #right-article img {
+        max-width:35%;
+        min-width: 30%;
+    }
+}
+
 @media only screen and (max-width: 770px){
     #right-article {
-        margin-left: 0;
+        margin-left: 1px;
         margin-top: 0.5rem;
     }
     
     #right-article img {
-        max-width: 60%;
+        float: right;
+        min-height: auto;
+        min-width: auto;
     }
 }
 
 @media only screen and (max-width: 600px){
+    #right-article img {
+        max-width: 35%;
+        margin: 5px;
+    }
     .homepage-header p {
         font-size: 30px;
         font-weight: 600;
