@@ -6,6 +6,18 @@ body {
     background-size: 550px, 250px, auto;
 }
 
+a {
+    color: black;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: all ease-in-out 0.1s;
+}
+
+a:hover {
+    color: black;
+    border-color: black;
+}
+
 .main-panel {
     margin-top: 3%;
     margin-left: 20%;
