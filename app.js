@@ -34,3 +34,11 @@ app.get('/', (req, res) => {
         stylesheet: "index"
     });
 });
+
+app.get('/artists', (req, res) => {
+    res.render('artists', {
+        layout: 'main',
+        title:"Our Artists",
+        stylesheet: "artists"
+    });
+});
