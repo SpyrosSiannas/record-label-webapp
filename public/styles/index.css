@@ -21,11 +21,15 @@
 }
 
 #playlists {
+    flex-wrap: wrap;
+}
+
+#playlists iframe {
     margin-top: 1rem;
 }
 
 @media only screen and (max-width: 600px){
-    #news-header p {
+    .homepage-header p {
         font-size: 30px;
         font-weight: 600;
     }
