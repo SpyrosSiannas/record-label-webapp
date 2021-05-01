@@ -100,6 +100,17 @@ img.portrait {
     margin-top: 1rem;
 }
 
+@media only screen and (max-width: 1300px){
+    #right-article img{
+        max-width: 80%;
+        max-height: 70%;
+    }
+
+    #left-article p{
+        -webkit-line-clamp: 14;
+    }
+}
+
 @media only screen and (max-width: 730px){
     #left-article {
         min-width: 230px;
@@ -123,4 +134,4 @@ img.portrait {
     #main-news p {
         font-size: 20px
     }
-}
+
