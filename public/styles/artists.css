@@ -60,6 +60,7 @@
   width: 100%;
   opacity: 0;
   transition: .5s ease;
+  padding-right: 0.5rem;
 }
 .spotify-container:hover{
    filter: invert(0.4);
