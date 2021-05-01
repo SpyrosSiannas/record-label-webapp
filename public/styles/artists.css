@@ -3,3 +3,79 @@
     text-align: center;
     border-bottom: 4px solid black;
 }
+
+#artist-grid {
+    padding: 0;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+#artist-grid .col-md {
+    margin-top: 1rem;
+}
+
+.top-header p {
+    font-size: 40px;
+}
+
+.artist-info img{
+    display: block;
+    height: auto;
+    width: 100%;
+}
+
+.artist-info {
+    position: relative;
+}
+
+.artist-info:hover .overlay-main{
+    opacity: .7;
+}
+
+.artist-info:hover .overlay-content{
+    opacity: 1;
+}
+
+.artist-info
+
+.overlay-main {
+  position: absolute;
+  background-image: linear-gradient(transparent, black);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+}
+
+.overlay-content {
+  position: absolute;
+  background-color: transparent;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+}
+
+.spotify-container{
+    width: 45%;
+}
+
+.overlay-content p{
+    font-size: 26px;
+    color: white;
+    opacity: 1;
+}
+
+.overlay-content img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}

@@ -1,1 +1,11 @@
-<div class="top-header">Our Artists</div>
+<div class="top-header"><p>Our Artists</p></div>
+<div id="artist-grid" class="container">
+    <!-- To be automatically generated with the Hbs -->
+    {{#times 3}}
+        <div class="row gx-2">
+            {{#times 3}}
+                {{> artist}}
+            {{/times}}
+        </div>
+    {{/times}}
+</div>
