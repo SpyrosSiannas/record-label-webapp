@@ -2,6 +2,16 @@
     margin-bottom: 0.7rem;
 }
 
+img.landscape {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+img.portrait {
+    max-width: 50%;
+    max-height: 80%;
+}
+
 .homepage-header {
     padding-top: 0.7rem;
     text-align: center;
@@ -26,14 +36,36 @@
     font-size: 24px;
     font-weight: 400;
     min-width: 200px;
-
 }
 
+#main-news a {
+    font-size: 20px;
+    font-weight: 800;
+    margin-left: auto;
+}
+
+.article-date {
+    font-weight: 800;
+    margin-left: auto;
+    font-size: 26px;
+    line-height: 40px;
+}
+
+.article-date::before{
+    content: '•';
+    font-size: 40px;
+    padding-right: 5px;
+}
+
+
 #left-article {
+    display: flex;
+    flex-direction: column;
     flex:42;
     border-right: 3px solid black;
     padding-right: 0.5rem;
 }
+
 
 #left-article p {
     overflow: hidden;
@@ -43,8 +75,21 @@
 }
 
 #right-article {
+    display: flex;
+    flex-direction: column;
     flex: 58;
     margin-left: 1rem;
+}
+
+#right-article p{
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 14;
+    -webkit-box-orient: vertical;
+}
+
+#right-article img{
+    margin-left: 10px;
 }
 
 #playlists {
@@ -62,7 +107,7 @@
         border-right: 0px;
         border-bottom: 3px solid black;
     }
-    
+
     #right-article {
         margin-left: 0;
         margin-top: 0.5rem;
