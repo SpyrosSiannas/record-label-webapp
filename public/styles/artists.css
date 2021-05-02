@@ -28,6 +28,10 @@
     position: relative;
 }
 
+.artist-info:hover {
+    cursor: pointer;
+}
+
 .artist-info:hover .overlay-main{
     opacity: .7;
 }
