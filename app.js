@@ -51,3 +51,11 @@ app.get('/merch', (req,res) => {
         src:"merch"
     });
 });
+
+app.get('/events', (req,res) => {
+    res.render('events', {
+        layout: 'main',
+        title: "Events",
+        src: "events"
+    })
+})

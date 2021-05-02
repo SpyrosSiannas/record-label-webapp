@@ -1,0 +1,71 @@
+.top-header {
+    padding-top: 0.7rem;
+    text-align: center;
+    border-bottom: 4px solid black;
+}
+
+.top-header p {
+    font-size: 40px;
+}
+
+.banner {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.event-grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.event-column {
+    display: flex;
+    flex-direction: column;
+}
+
+#column-left {
+    margin-right: 1rem;
+    flex: 1 0 43%;
+}
+
+#column-right {
+    flex: 1 0 54%;
+}
+
+.event-header {
+    display: flex;
+}
+
+.event-header .date {
+    margin-left: auto;
+}
+
+.location {
+    display: flex;
+}
+
+.location-icon {
+    max-height: 20px;
+    max-width: 100%;
+    margin-right: 0.4rem;
+}
+
+.location-text p{
+    font-size: 18px;
+}
+
+.artist-name p {
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.date p{
+    font-size: 23px;
+    font-weight: 800;
+}
+
+.date p::before {
+    content: "•";
+    margin-right: 0.6rem;
+}
