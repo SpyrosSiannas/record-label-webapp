@@ -33,6 +33,7 @@
 .buy-btn {
     max-height: 100%;
     max-width: 120px;
+    transition: ease 0.2s;
 }
 
 .buy-btn:hover {
@@ -42,3 +43,9 @@
     cursor: pointer;
 
 }
+
+a {
+    text-decoration: none;
+    border: none;
+}
+

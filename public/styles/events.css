@@ -26,11 +26,11 @@
 
 #column-left {
     margin-right: 1rem;
-    flex: 1 0 43%;
+    flex: 1 0 44%;
 }
 
 #column-right {
-    flex: 1 0 54%;
+    flex: 1 0 53%;
 }
 
 .event-header {
@@ -68,4 +68,45 @@
 .date p::before {
     content: "•";
     margin-right: 0.6rem;
+}
+
+.ticket-container {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.buy-ticket {
+    max-width: 100%;
+    max-height: 100%;
+    transition: ease-in 0.2s;
+}
+
+.buy-ticket:hover {
+    background-color: white;
+    filter: invert(1);
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    border: none;
+}
+
+@media only screen and (max-width:700px){
+    .top-header p {
+        font-size: 30px;
+        font-weight: 600;
+    }
+
+    .artist-name p {
+        font-size: 22px;
+    }
+
+    .date p {
+        font-size: 21px;
+    }
+
+    .location p{
+        font-size: 18px;
+    }
 }
