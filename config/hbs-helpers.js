@@ -5,7 +5,7 @@ module.exports = {
             accum += block.fn(i);
         return accum;
     },
-    // Larer replace block with query result array
+    // Later replace block with query result array
     even_fill : function(n, block) {
         var accum = '';
         for (var i=0; i<n; ++i){
