@@ -37,7 +37,6 @@ app.get('/', (req, res) => {
 });
 
 app.get('/artists', (req, res) => {
-    dbResult = sql.query("SELECT * FROM ARTIST")
     res.render('artists', {
         layout: 'main',
         title:"Our Artists",
