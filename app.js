@@ -7,7 +7,8 @@ app.engine('hbs', exphbs({
     layoutsDir: __dirname + '/views/layouts',
     extname: 'hbs',
     defaultLayout: 'main',
-    partialsDir: __dirname + '/views/partials/'
+    partialsDir: __dirname + '/views/partials/',
+    helpers: require('./config/hbs-helpers.js')
 }));
 
 app.use(express.static(__dirname + '/public'));
@@ -31,6 +32,14 @@ app.get('/', (req, res) => {
     res.render('index', {
         layout: 'main',
         title:"Home",
-        stylesheet: "index"
+        src: "index"
+    });
+});
+
+app.get('/artists', (req, res) => {
+    res.render('artists', {
+        layout: 'main',
+        title:"Our Artists",
+        src: "artists"
     });
 });
