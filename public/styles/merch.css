@@ -33,7 +33,6 @@
 .buy-btn {
     max-height: 100%;
     max-width: 120px;
-    transition: ease 0.2s;
 }
 
 .buy-btn:hover {
@@ -41,10 +40,5 @@
     filter: invert(1);
     opacity: 1;
     cursor: pointer;
-}
 
-a {
-    text-decoration: none;
-    border: none;
 }
-

@@ -31,14 +31,6 @@ a:hover {
     background-color: black;
 }
 
-
-@media only screen and (max-width:900px){
-        body {
-        background: url("/img/Coffee Stain 1.png") 15% 0.5% no-repeat;
-        background-size: 300px 225px;
-    }
-}
-
 @media only screen and (max-width: 600px){
     body {
         background: url("/img/Coffee Stain 1.png") 0% 0.5% no-repeat;
