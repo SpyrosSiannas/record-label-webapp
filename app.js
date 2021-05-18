@@ -43,3 +43,11 @@ app.get('/artists', (req, res) => {
         src: "artists"
     });
 });
+
+app.get('/merch', (req,res) => {
+    res.render('merch', {
+        layout: "main",
+        title:"Merchandise",
+        src:"merch"
+    });
+});
