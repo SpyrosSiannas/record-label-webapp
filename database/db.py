@@ -74,7 +74,6 @@ if __name__ == "__main__":
                 # load DB should go here
                 my_ctrl.query_from_file("create_db")
                 print("===== DATABASE RESET COMPLETE ======")
-                break
             if cmd == 5:
                 print(ascii)
             if cmd == 0:
