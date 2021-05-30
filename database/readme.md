@@ -35,4 +35,8 @@ Assuming that you are in the `database` directory, from your command line, execu
 
         python db.py
 
+## How to deactivate the env
 
+Just run the following
+
+        deactivate
