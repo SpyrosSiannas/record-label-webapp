@@ -1,5 +1,5 @@
 .modal {
-  display: flex;
+  display: none;
   position: fixed;
   z-index: 6;
   left: 0;
@@ -10,6 +10,7 @@
   background-color: rgba(0,0,0,0.4);
   justify-content: center;
   align-items: center;
+  transition: all ease-in-out 0.1s;
 }
 
 .sign-in-content {
