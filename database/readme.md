@@ -12,11 +12,12 @@ Assuming that you are in the `database` directory, from your command line, execu
 
 2. Now, activate the virtual environment
 
-        env/Scripts/activate.bat
+        env/Scripts/activate.bat (Windows)
+        env/bin/activate (MacOS/ Linux)
 
 3. Install the requirements
 
-        pip install -r requirements.txt
+        pip3 install -r requirements.txt
 
 4. Run the db script
 
@@ -26,7 +27,9 @@ Assuming that you are in the `database` directory, from your command line, execu
 
 1. Activate the venv
    
-        database/env/Scripts/activate.bat
+        env/Scripts/activate.bat (Windows)
+        env/bin/activate (MacOS/ Linux)
+        
 
 2. Now, run the script
 
