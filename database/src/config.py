@@ -1,4 +1,4 @@
-global username, password, host, dbname, port
+global username, password, host, dbname
 
 
 username = 'sql11409448'
