@@ -43,16 +43,18 @@ if __name__ == "__main__":
     my_ctrl = controller.Controller(my_db)
 
     # Print options list
-    print('''What would you like to do?
+    option_list='''What would you like to do?
     1. Create database
     2. Empty database
     3. Load database
     4. Reset database
+    5. Print ascii art
     0. Exit
-    ''')
+    '''
 
     # Main loop
     while True:
+        print(option_list)
         cmd = int(input())
         try:
             if cmd == 1:
@@ -68,6 +70,8 @@ if __name__ == "__main__":
                 break
             if cmd == 4:
                 break
+            if cmd == 5:
+                print(ascii)
             if cmd == 0:
                 break
         except Exception as e:
