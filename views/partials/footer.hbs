@@ -20,7 +20,7 @@
                     <input value="Login" class="submit" id="signin-submit" type="submit">
                 </form>
                 <a>forgot your password?</a>
-                <p class="bottom-modal-text">Don't have an account yet? <a>Sign-up</a></p>
+                <p class="bottom-modal-text">Don't have an account yet? <a onclick="closeLoginModal();openSignupModal()">Sign-up</a></p>
             </div>
         </div>
    </div> 
@@ -46,7 +46,7 @@
                     </div>
                     <input value="Create Account" class="submit" id="signup-submit" type="submit">
                 </form>
-                <p class="bottom-modal-text">Already have an account? <a>Sign-in</a></p>
+                <p class="bottom-modal-text">Already have an account? <a onclick="closeSignupModal(); openLoginModal()">Sign-in</a></p>
             </div>
         </div>
     </div>
