@@ -37,3 +37,21 @@ a:hover {
         background-size: 200px 150px;
     }
 }
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.294); 
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3b3834;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #454545;
+}
