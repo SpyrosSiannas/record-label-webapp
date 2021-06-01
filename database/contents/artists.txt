@@ -1,6 +1,4 @@
-// Edw vale ola ta table names pou xreiazontai gia to entity
 name,profile_url,bio_url,spotify_url
-// Edw ti data paei se kathe pedio
+kostas,img/kostas.jpg,bios/kostas.txt,http://asdasdasdasdas.com
 kostas,img/kostas.jpg,bios/kostas.txt,http://asdasdasdasdas.com
 
-// Grapse apo dw kai katw kai meta svhsta auta xexe :)

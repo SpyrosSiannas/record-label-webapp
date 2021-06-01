@@ -1,5 +1,5 @@
 from mysql.connector import Error as sqlError
-from src.fromfile import get_script
+from src.fromfile import get_script, read_csv
 
 
 class Controller:
@@ -28,4 +28,21 @@ class Controller:
         self.query("SELECT COUNT(*) FROM " + table)
         res = self.__cursor.fetchall()
         return res[0][0]
+
+    # Takes as an argument a table, the column names, a format string (variable types) and
+    # the given values and inserts it in the database
+    def insert_values(self, table, params, format_string, *values):
+        sql = "INSERT INTO " + table + '(' + params + ')' + " VALUES " + format_string
+        vals = values
+        self.__cursor.execute(sql, vals)
+
+    # Fetches a single column from a table and returs it as an arary
+    def fetch_attribute(self, attr, table):
+        sql = "SELECT " + attr + " FROM " + table
+        self.__cursor.execute(sql)
+        myresult = self.__cursor.fetchall()
+        res = []
+        for i in range(len(myresult)):
+            res.append(myresult[i][0])
+        return res
 
