@@ -60,6 +60,13 @@ app.get('/events', (req,res) => {
     });
 });
 
+app.get('/about', (req,res) => {
+    res.render('about', {
+        layout: 'main',
+        title: 'About Coffeestained',
+        src: 'about'
+    })
+})
 
 
 
