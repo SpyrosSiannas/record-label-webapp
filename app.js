@@ -61,7 +61,13 @@ app.get('/events', (req,res) => {
 });
 
 
-
+app.get('/contact', (req,res)=> {
+    res.render('contact', {
+        layout: 'main',
+        title: 'Contact Us',
+        src: 'contact'
+    });
+});
 
 
 

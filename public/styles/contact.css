@@ -1,0 +1,40 @@
+.top-header {
+    padding-top: 0.7rem;
+    padding-bottom: 0.7rem;
+    text-align: center;
+    border-bottom: 4px solid black;
+    margin-bottom: 0.7rem;
+}
+
+.top-header p {
+    font-size: 30px;
+}
+
+.contact-main-content {
+    text-align: center;
+    width: 100%;
+    padding: 0px 7rem;
+}
+
+.contact-main-content input,select, textarea{
+    margin-bottom: 0.7rem;
+    width: calc(100% - 200px);
+    margin-left: 1rem;
+    min-width: 200px;
+}
+
+.input-row {
+    width: 100%;
+}
+
+.input-row span {
+    display: block;
+    overflow: hidden;
+    padding-right: 5px;
+}
+
+.input-row label {
+    text-align: left;
+    float: left;
+    width: 4.5rem;
+}
