@@ -60,7 +60,13 @@ app.get('/events', (req,res) => {
     });
 });
 
-
+app.get('/artist', (req,res) => {
+    res.render('bio', {
+        layout: "main",
+        time: "bio template",
+        src: "bio"
+    });
+});
 
 
 
