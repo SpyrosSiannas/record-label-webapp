@@ -1,4 +1,0 @@
-name,profile_url,bio_url,spotify_url
-kostas,img/kostas.jpg,bios/kostas.txt,http://asdasdasdasdas.com
-kostas,img/kostas.jpg,bios/kostas.txt,http://asdasdasdasdas.com
-
