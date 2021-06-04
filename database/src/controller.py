@@ -31,10 +31,11 @@ class Controller:
 
     # Takes as an argument a table, the column names, a format string (variable types) and
     # the given values and inserts it in the database
-    def insert_values(self, table, params, format_string, *values):
-        sql = "INSERT INTO " + table + '(' + params + ')' + " VALUES " + format_string
-        vals = values
-        self.__cursor.execute(sql, vals)
+    def insert_values(self, table, params, values):
+        for i in range(len(values)):
+            values[i] = '"' + values[i] + '"'
+        sql = "INSERT INTO " + table + '(' + params + ')' + " VALUES (" + ", ".join(values) + ")"
+        self.__cursor.execute(sql)
 
     # Fetches a single column from a table and returs it as an arary
     def fetch_attribute(self, attr, table):
@@ -46,3 +47,10 @@ class Controller:
             res.append(myresult[i][0])
         return res
 
+    def addArtists(self):
+        columns, body = read_csv("artists.csv")
+        for table_line in body:
+            self.insert_values("Artist",
+                               ", ".join(columns),
+                               table_line)
+        self.__cnx.commit()

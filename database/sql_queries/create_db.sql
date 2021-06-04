@@ -22,13 +22,15 @@ CREATE TABLE `Places` (
 
 CREATE TABLE `Order` (
 	`order_id` INT NOT NULL AUTO_INCREMENT,
-	`date_ordered` DATE NOT NULL,
+	`date_ordered` VARCHAR(255) NOT NULL,
+	`Status` VARCHAR(255) NOT NULL,
 	PRIMARY KEY (`order_id`)
 );
 
 CREATE TABLE `Merch` (
 	`product_id` INT NOT NULL AUTO_INCREMENT,
-	`Type_pr` INT NOT NULL,
+	`Type_pr` VARCHAR(255) NOT NULL,
+	`description_pr` VARCHAR(255) NOT NULL,
 	PRIMARY KEY (`product_id`)
 );
 
@@ -45,20 +47,22 @@ CREATE TABLE `Admin` (
 
 CREATE TABLE `Artist` (
 	`artist_id` INT NOT NULL AUTO_INCREMENT,
-	`date_registered` DATE NOT NULL,
-	`profile_url` VARCHAR(255) NOT NULL,
+	`name` VARCHAR(255) NOT NULL,
+	`profile_img` VARCHAR(255) NOT NULL,
 	`spotify_url` VARCHAR(255) NOT NULL,
+	`apple_url` VARCHAR(255) NOT NULL,
+	`ytb_url` VARCHAR(255) NOT NULL,
 	`bio_url` VARCHAR(255) NOT NULL,
-	`profession` VARCHAR(255) NOT NULL,
-	`birthday` DATE NOT NULL,
-	`from` VARCHAR(255) NOT NULL,
+	`birthday` VARCHAR(255) NOT NULL,
+	`country_of_origin` VARCHAR(255) NOT NULL,
 	`hobby` VARCHAR(255) NOT NULL,
 	`genre` VARCHAR(255) NOT NULL,
 	`guilty_pleasure` VARCHAR(255) NOT NULL,
 	`inspiration` VARCHAR(255) NOT NULL,
 	`sounds` VARCHAR(255) NOT NULL,
 	`motto` VARCHAR(255) NOT NULL,
-	`singer` VARCHAR(255) NOT NULL,
+	`fav_singer` VARCHAR(255) NOT NULL,
+	`date_registered` VARCHAR(255) NOT NULL,
 	PRIMARY KEY (`artist_id`)
 );
 
@@ -66,7 +70,7 @@ CREATE TABLE `Article` (
 	`article_id` INT NOT NULL UNIQUE,
 	`artists_id` INT NOT NULL,
 	`Title` VARCHAR(255) NOT NULL,
-	`date_published` DATE NOT NULL,
+	`date_published` VARCHAR(255) NOT NULL,
 	`images_url` VARCHAR(255) NOT NULL,
 	`header_url` VARCHAR(255) NOT NULL,
 	`bio_url` VARCHAR(255) NOT NULL,
@@ -77,8 +81,8 @@ CREATE TABLE `Event` (
 	`event_id` INT NOT NULL UNIQUE,
 	`art_id` INT NOT NULL,
 	`Place` VARCHAR(255) NOT NULL,
-	`Date` DATE NOT NULL,
-	`Availability` DATE NOT NULL,
+	`Date` VARCHAR(255) NOT NULL,
+	`Availability` VARCHAR(255) NOT NULL,
 	`ticket_url` VARCHAR(255) NOT NULL,
 	PRIMARY KEY (`event_id`,`art_id`)
 );
