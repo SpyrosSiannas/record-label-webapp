@@ -69,7 +69,7 @@ if __name__ == "__main__":
                 print("===== DATABASE DROPPED ======")
             if cmd == 3:
                 print("===== LOADING ARTISTS =======")
-                my_ctrl.addArtists()
+                my_ctrl.add_artists()
                 print("===== ARTISTS LOADED =======")
             if cmd == 4:
                 print("===== RESETTING DATABASE =======")
