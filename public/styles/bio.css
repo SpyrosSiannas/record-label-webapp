@@ -1,0 +1,66 @@
+.top-header {
+    padding-top: 0.7rem;
+    padding-bottom: 0.7rem;
+    text-align: center;
+    border-bottom: 4px solid black;
+}
+
+.top-header h1 {
+    font-size: 32px;
+    font-weight: 750;
+}
+
+#artist-content {
+    margin-top: 0.7rem;
+}
+
+#artist-content .artist-image {
+    height: 50vh;
+    background-size: auto 75vh;
+    background-position: center center;
+    width: auto;
+    background-repeat: no-repeat;
+}
+
+.icon-links img{
+    width: auto;
+}
+
+.icon-links img:hover{
+    cursor: pointer;
+}
+
+.article-text {
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    font-style: normal;
+}
+
+.cheatsheet {
+    text-align: center;
+}
+
+.cheatsheet h1 {
+    font-size: 22px;
+    font-weight: 750;
+    text-decoration: underline;
+    margin-bottom: 1rem;
+}
+
+.cheatsheet h2 {
+    font-size: 20px;
+    font-weight: 750;
+    margin: 0;
+
+}
+
+.cheatsheet p{
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0
+}
+
+.row {
+    margin-bottom: 0.7rem;
+}
