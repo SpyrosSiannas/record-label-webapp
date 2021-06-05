@@ -12,11 +12,14 @@ exports.index = (req, res) => {
 }
 
 exports.artists = (req, res) => {
-    res.render('artists', {
-        layout: 'main',
-        title:"Our Artists",
-        src: "artists"
-    });
+    model.getArtists((artists)=>{    
+        res.render('artists', {
+            layout: 'main',
+            title:"Our Artists",
+            src: "artists",
+            artists: artists
+        });
+    })
 }
 
 exports.merch = (req,res) => {
@@ -55,9 +58,8 @@ exports.bio = (req,res) => {
     const artistId = req.query.id;
     res.render('bio', {
         layout: 'main',
-        title: "Artist Name",
+        title: artistId,
         src: 'bio',
-        artistname: "Artist Name",
-        profileimg: "img/gambino-article.jpg"
+        artistname: artistId
     })
 }
