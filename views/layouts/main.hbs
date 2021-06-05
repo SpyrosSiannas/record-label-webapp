@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="styles/{{src}}.css">
 </head>
 <body>
+    {{> sidenav}}
+    <div id="body-overlay" class="body-overlay"></div>
     <div id="main-panel" class="main-panel">
         {{> navbar}}
         {{{body}}}

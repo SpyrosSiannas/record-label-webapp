@@ -5,6 +5,9 @@ window.onclick = function(event) {
     if (event.target.id == "signup-modal") {
       closeSignupModal();
     }
+    if (event.target.id == "body-overlay") {
+        closeSideNav();
+    }
 }
 
 function openLoginModal(){
@@ -26,3 +29,20 @@ function closeSignupModal(){
     var modal = document.querySelector("#signup-modal");
     modal.style.display = "none";
 }
+
+function openSideNav(){
+  document.querySelector(".sidenav").style.width = "250px";
+  document.querySelector("#main-panel").style.marginLeft = "calc(150px + 20%)";
+  var overlay = document.querySelector(".body-overlay");
+  overlay.style.display = "flex";
+  overlay.style.opacity = "100%";
+}
+
+function closeSideNav(){
+  document.querySelector(".sidenav").style.width = "0px";
+  document.querySelector("#main-panel").style.marginLeft = "20%";
+  var overlay = document.querySelector(".body-overlay");
+  overlay.style.display = "none";
+  overlay.style.opacity = "0%";
+}
+
