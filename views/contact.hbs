@@ -1,33 +1,25 @@
 <div class="top-header"><p>Contact Us</p></div>
 <div class="contact-main-content">
-    <form action="">
-        <div class="input-row">
-            <label>Receipants</label>
-            <span>
-                <select>
-                    <option> Uno </option>
-                    <option> Dos </option>
-                    <option> Tres </option>
-                </select>
-            </span>
+    <form>
+        <div class="mb-3">
+            <label for="contactName" class="form-label">Full Name</label>
+            <input type="text" class="form-control" id="contactName" required>
         </div>
-        <div class="input-row">
-            <label>Name</label>
-            <span><input type="text"><br></span>
+        <div class="mb-3">
+            <label for="contactEmail" class="form-label">Email Address</label>
+            <input type="email" class="form-control" id="contactEmail" aria-describedby="emailHelp">
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
         </div>
-        <div class="input-row">
-            <label>E-mail</label>
-            <span><input type="email"><br></span>
+        <div class="mb-3">
+            <label for="contactSubject" class="form-label">Subject</label>
+            <input type="text" class="form-control" id="contactSubject" required>
         </div>
-        <div class="input-row">
-            <label>Subject</label>
-            <span><input type="text"><br></span>
+        <div class="mb-3">
+            <label for="contactMessage" class="form-label">Message</label>
+            <textarea class="form-control" id="contactMessage" rows="6"></textarea>
         </div>
-        <div class="input-row">
-            <label for="">Message</label>
-            <span>
-                <textarea rows="7"></textarea>
-            </span>
-        </form>
+        <div class="contact-submit">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
     </form>
 </div>

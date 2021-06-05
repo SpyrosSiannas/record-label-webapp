@@ -11,30 +11,40 @@
 }
 
 .contact-main-content {
-    text-align: center;
     width: 100%;
     padding: 0px 7rem;
 }
 
-.contact-main-content input,select, textarea{
-    margin-bottom: 0.7rem;
-    width: calc(100% - 200px);
-    margin-left: 1rem;
-    min-width: 200px;
+.contact-main-content input {
+    background-color: white;
 }
 
-.input-row {
-    width: 100%;
+.contact-main-content input:valid {
+    background-color: white;
 }
 
-.input-row span {
-    display: block;
-    overflow: hidden;
-    padding-right: 5px;
+.contact-main-content form button {
+    outline: none;
+    border: 1px solid black;
+    background-color: black;
+    color: white;
+    transition: ease-in-out 0.3s;
+    border-radius: 0;
 }
 
-.input-row label {
-    text-align: left;
-    float: left;
-    width: 4.5rem;
+.contact-main-content form button:hover {
+    text-decoration: underline;
+    background-color: white;
+    color: black;
+    border-color: black
+}
+
+.form-control:focus {
+    border-color: rgb(97, 19, 19) !important;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset,
+                0px 0px 8px rgba(97, 19, 19, 0.5);
+}
+
+.contact-submit {
+    text-align: center;
 }
