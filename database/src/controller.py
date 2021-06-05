@@ -35,7 +35,6 @@ class Controller:
         for i in range(len(values)):
             values[i] = '"' + values[i] + '"'
         sql = "INSERT INTO " + table + '(' + params + ')' + " VALUES (" + ", ".join(values) + ")"
-        print(sql)
         self.__cursor.execute(sql)
 
     # Fetches a single column from a table and returs it as an arary

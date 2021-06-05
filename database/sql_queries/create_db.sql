@@ -82,10 +82,10 @@ CREATE TABLE `Article` (
 CREATE TABLE `Event` (
 	`event_id` INT NOT NULL AUTO_INCREMENT UNIQUE,
 	`title_ev` VARCHAR(255) NOT NULL,
+	`venue` VARCHAR(255) NOT NULL,
 	`place` VARCHAR(255) NOT NULL,
 	`date_ev` VARCHAR(255) NOT NULL,
 	`description_ev` VARCHAR(255) NOT NULL,
-	`availability` VARCHAR(255) NOT NULL,
 	`ticket_url` VARCHAR(255) NOT NULL,
 	`img_ev_url` VARCHAR(255) NOT NULL,
 	PRIMARY KEY (`event_id`)

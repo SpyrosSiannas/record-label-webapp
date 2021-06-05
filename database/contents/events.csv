@@ -1,5 +1,5 @@
-title_ev,place,date_ev,description_ev,availability,ticket_url,img_ev_url
-Arlo Parks,O2 Shepherd's Bush Empire ∙ London,11/3/2021 19:00,bio/event1.txt,https://www.ticketmaster.co.uk/arlo-parks-london-03-11-2021/event/1F005A44FE003A65,img/events/event1.jpg
-Nubya Garcia,Manchester Gorilla ∙ Manchester,11/3/2021 19:30,bio/event2.txt,https://www.ticketweb.uk/event/nubya-garcia-gorilla-tickets/10375165?REFERRAL_ID=tmfeed,img/events/event2.jpg
-Pori Jazz Festival,Kirjurinluoto Arena ∙ Pori,15/7/2021 12:00,bio/event3.txt,https://www.songkick.com/festivals/1429-pori-jazz/id/39593598-pori-jazz-2021,img/events/event3.jpg
-Maiden Voyage Festival,Lee Valley Showground ∙ London,29/8/2021 12:00,bio/event4.txt,https://www.ticketweb.uk/event/maiden-voyage-festival-2021-lee-valley-showground-tickets/10174285?REFERRAL_ID=tmfeed,img/events/event4.jpg
+title_ev,venue,place,date_ev,description_ev,ticket_url,img_ev_url
+Arlo Parks,O2 Shepherd's Bush Empire,London,11/3/2021 19:00,bio/event1.txt,https://www.ticketmaster.co.uk/arlo-parks-london-03-11-2021/event/1F005A44FE003A65,img/events/event1.jpg
+Nubya Garcia,Manchester Gorilla,Manchester,11/3/2021 19:30,bio/event2.txt,https://www.ticketweb.uk/event/nubya-garcia-gorilla-tickets/10375165?REFERRAL_ID=tmfeed,img/events/event2.jpg
+Pori Jazz Festival,Kirjurinluoto Arena,Pori,15/7/2021 12:00,bio/event3.txt,https://www.songkick.com/festivals/1429-pori-jazz/id/39593598-pori-jazz-2021,img/events/event3.jpg
+Maiden Voyage Festival,Lee Valley Showground,London,29/8/2021 12:00,bio/event4.txt,https://www.ticketweb.uk/event/maiden-voyage-festival-2021-lee-valley-showground-tickets/10174285?REFERRAL_ID=tmfeed,img/events/event4.jpg
