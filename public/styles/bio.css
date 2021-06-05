@@ -14,6 +14,22 @@
     margin-top: 0.7rem;
 }
 
+#artist-content .artist-image {
+    height: 50vh;
+    background-size: auto 75vh;
+    background-position: center center;
+    width: auto;
+    background-repeat: no-repeat;
+}
+
+.icon-links img{
+    width: auto;
+}
+
+.icon-links img:hover{
+    cursor: pointer;
+}
+
 .article-text {
     margin: 0;
     padding: 0;
@@ -35,7 +51,7 @@
 .cheatsheet h2 {
     font-size: 20px;
     font-weight: 750;
-    margin: 0
+    margin: 0;
 
 }
 

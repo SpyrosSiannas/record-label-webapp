@@ -51,3 +51,13 @@ exports.contact = (req,res)=> {
     });
 }
 
+exports.bio = (req,res) => {
+    const artistId = req.query.id;
+    res.render('bio', {
+        layout: 'main',
+        title: "Artist Name",
+        src: 'bio',
+        artistname: "Artist Name",
+        profileimg: "img/gambino-article.jpg"
+    })
+}
