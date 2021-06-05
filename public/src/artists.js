@@ -1,3 +1,3 @@
 function redirectToArtist(artistId){
-    window.location.href = "/";
+    window.location.href = "/artist?id=" + String(artistId);
 }

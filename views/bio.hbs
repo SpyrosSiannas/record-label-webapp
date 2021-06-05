@@ -1,0 +1,43 @@
+<div class="top-header"><h1>{{artist.name}}</h1></div>
+<div id="artist-content" class="container overflow-hidden">
+    <div class="row artist-image" style="background-image:url('{{artist.profile_img}}')">
+    </div>
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="row">
+                <p class="article-text">
+                    {{bioText}}
+                </p>
+            </div>
+        </div>
+        <div class="col-sm-4 cheatsheet-col">
+            <div class="cheatsheet">
+                <h1>{{artist.name}}'s cheatsheet</h1>
+                <h2>Birthday</h2>
+                <p>{{artist.birthday}}</p>
+                <h2>From:</h2>
+                <p>{{artist.country_of_origin}}</p>
+                <h2>Genre:</h2>
+                <p>{{artist.genre}}</p>
+                <h2>Sounds like:</h2>
+                <p>{{artist.sounds}}</p>
+                <h2>Hobby:</h2>
+                <p>{{artist.hobby}}</p>
+                <h2>Inspiration:</h2>
+                <p>{{artist.inspiration}}</p>
+                <h2>Favourite Singer:</h2>
+                <p>{{artist.fav_singer}}</p>
+                <h2>Guilty Pleasure:</h2>
+                <p>{{artist.guilty_pleasure}}</p>
+                <h2>Motto:</h2>
+                <p>{{artist.motto}}</p>
+            </div>
+        </div>
+        <div class="row icon-links">
+
+            <a cass="spotify-url" href="{{artist_spotify_url}}"> <img src="img/spotify-icon.svg"></a>
+            <a href="{{artist.ytb_url}}"> <img src="img/youtube-icon.svg"></a>
+            <a href="{{artist.apple_url}}"> <img src="img/apple-music-icon.svg"></a>
+        </div>
+    </div>  
+</div>
