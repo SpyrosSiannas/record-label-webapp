@@ -40,7 +40,7 @@ function openSideNav(){
 
 function closeSideNav(){
   document.querySelector(".sidenav").style.width = "0px";
-  document.querySelector("#main-panel").style.marginLeft = "20%";
+  document.querySelector("#main-panel").style.marginLeft = "";
   var overlay = document.querySelector(".body-overlay");
   overlay.style.display = "none";
   overlay.style.opacity = "0%";
