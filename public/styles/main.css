@@ -59,7 +59,7 @@ a:hover {
 
 .body-overlay {
   position: fixed;
-  background-color: rgba(51, 40, 24, 0.3); 
+  background-color: rgba(77, 59, 33, 0.3); 
   z-index: 1;
   top: 0;
   bottom: 0;

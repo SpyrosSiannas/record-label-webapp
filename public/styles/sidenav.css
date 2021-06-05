@@ -11,6 +11,7 @@
   background-size: 16rem 13rem;
   background-position-y: 1rem;
   background-position-x: -7rem;
+  box-shadow: black 0px 15px 15px;
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 30px; /* Place content 60px from the top */
   transition: 0.3s; /* 0.3 second transition effect to slide in the sidenav */
