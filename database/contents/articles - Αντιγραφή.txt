@@ -1,0 +1,5 @@
+title_art,date_art,img_art_url,text_url
+Childish Gambino album turns one,3/4/2021 10:45,img/article/img_article1.jpg,bio/article1.txt
+Nubya Garcia Announces Record Store Day Release ‘SOURCE ≡ OUR DANCE’,6/4/2021 20:12,img/article/img_article2.jpg,bio/article2.txt
+Charles Lloyd Revels in the Flow on a Stellar Live Album,2/25/2021 12:09,img//article/img_article3.jpg,bio/article3.txt
+Arlo Parks Brings ‘Hope’ to 2021 Brit Awards,5/12/2021 07:32,img//article/img_article4.jpg,bio/article4.txt
