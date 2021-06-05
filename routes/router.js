@@ -17,4 +17,6 @@ router.get('/about', controller.about)
 
 router.get('/contact', controller.contact)
 
+router.get('/artist', controller.bio)
+
 module.exports = router;
