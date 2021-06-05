@@ -29,8 +29,3 @@ app.listen(process.env.PORT || 80, (error)=>{
 reload(app);
 
 app.set('view engine', 'hbs');
-
-
-
-
-

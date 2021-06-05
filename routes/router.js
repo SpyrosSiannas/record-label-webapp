@@ -13,4 +13,6 @@ router.get('/merch', controller.merch);
 
 router.get('/events', controller.events);
 
+router.get('/about', controller.about)
+
 module.exports = router;

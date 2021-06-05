@@ -33,3 +33,11 @@ exports.events =  (req,res) => {
         src:"events"
     });
 }
+
+exports.about = (req,res) => {
+    res.render('about', {
+        layout: 'main',
+        title: 'About Coffeestained',
+        src: 'about'
+    })
+}
