@@ -1,0 +1,5 @@
+title_pr,type_pr,description_pr,price_pr,img_pr_url
+Esperanza Spalding Unisex T-Shirt,Shirts,Official Esperanza Spalding Merch.The standard traditional t-shirt for everyday wear. Generous and boxy fit. 50% Cotton and 50% Polyester Heather,25.99$,img/product1.jpg
+Childish Gambino Unisex T-Shirt,Shirts,Official Childish Gambino Merch.The standard traditional t-shirt for everyday wear. Generous and boxy fit. 50% Cotton and 50% Polyester Heather,25.99$,img/product2.jpg
+CoffeeStained Records Unisex T-Shirt,Shirts,Official CoffeeStained Records Merch.The standard traditional t-shirt for everyday wear. Generous and boxy fit. 50% Cotton and 50% Polyester Heather,25.99$,img/product3.jpg
+CoffeeStained Records Coasters,Accessories,Official CoffeeStained Records Merch. Set of 4 coasters(4x4")/15.99$,img/product4.jpg
