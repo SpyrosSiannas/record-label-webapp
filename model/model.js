@@ -1,6 +1,8 @@
 'use strict';
 
-var mysql = require('mysql');
+const mysql = require('mysql');
+const fs = require('fs');
+
 var con = mysql.createConnection({
   host: "sql11.freemysqlhosting.net",
   user: "sql11409448",
@@ -9,12 +11,17 @@ var con = mysql.createConnection({
 });
 
 exports.getArtists = function(callback) {
-    con.connect(function(err) {
-        if (err) throw err;
-        var sql = "SELECT * FROM Artist";
-        con.query(sql, function (err, result) {
-            if (err) throw err;
-            callback(result);
+    var sql = "SELECT * FROM Artist";
+    con.query(sql, function (err, result) {
+        callback(result);
+    });
+};
+
+exports.getArtistSingle = function(artistId, callback) {
+    var sql = "SELECT * FROM Artist WHERE artist_id = " + con.escape(artistId);
+    con.query(sql, function (err, result) {
+        fs.readFile("./public/" + result[0].bio_url, (err, data)=>{
+            callback(result, data);
         });
     });
-}
+};

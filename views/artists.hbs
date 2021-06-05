@@ -1,9 +1,16 @@
 <div class="top-header"><p>Our Artists</p></div>
 <div id="artist-grid" class="container">
     <!-- To be automatically generated with the Hbs -->
-        <div class="row gx-2">
-            {{#each artists}}
-                {{> artist}}
-            {{/each}}
+    {{#everyNth artists 3}}
+    {{#if isModZeroNotFirst}}
         </div>
+    {{/if}}
+    {{#if isModZero}}
+        <div class="row gx-2">
+    {{/if}}
+            {{> artist}}
+    {{#if isLast}}
+        </div>
+    {{/if}}
+    {{/everyNth}}
 </div>

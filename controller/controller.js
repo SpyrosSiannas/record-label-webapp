@@ -55,11 +55,15 @@ exports.contact = (req,res)=> {
 }
 
 exports.bio = (req,res) => {
-    const artistId = req.query.id;
-    res.render('bio', {
-        layout: 'main',
-        title: artistId,
-        src: 'bio',
-        artistname: artistId
-    })
+    const artistId = Number(req.query.id);
+    model.getArtistSingle(artistId, (artist, text) => {
+            res.render('bio', {
+                layout: 'main',
+                title: artist.name,
+                src: 'bio',
+                bioText: text,
+                artist: artist[0]
+            })
+        }
+    )
 }

@@ -1,44 +1,43 @@
-<div class="top-header"><h1>{{artistname}}</h1></div>
+<div class="top-header"><h1>{{artist.name}}</h1></div>
 <div id="artist-content" class="container overflow-hidden">
-    <div class="row artist-image" style="background-image:url('{{profileimg}}')">
+    <div class="row artist-image" style="background-image:url('{{artist.profile_img}}')">
     </div>
     <div class="row">
         <div class="col-lg-8">
             <div class="row">
-                <p class="article-text">Anaïs Oluwatoyin Estelle Marinho known professionally as Arlo Parks, is a British singer-songwriter and poet. Her debut studio album, Collapsed in Sunbeams, was released in 2021 to critical acclaim and peaked at number three on the UK Albums Chart. It earned her nominations for Album of the Year, Best New Artist and Best British Female Solo Artist at the 2021 Brit Awards.
-                    Anaïs Oluwatoyin Estelle Marinho known professionally as Arlo Parks, is a British singer-songwriter and poet. Her debut studio album, Collapsed in Sunbeams, was released in 2021 to critical acclaim and peaked at number three on the UK Albums Chart. It earned her nominations for Album of the Year, Best New Artist and Best British Female Solo Artist at the 2021 Brit Awards.
-                    <br>
-                    Anaïs Oluwatoyin Estelle Marinho known professionally as Arlo Parks, is a British singer-songwriter and poet. Her debut studio album, Collapsed in Sunbeams, was released in 2021 to critical acclaim and peaked at number three on the UK Albums Chart. It earned her nominations for Album of the Year, Best New Artist and Best British Female Solo Artist at the 2021 Brit Awards.
+                <p class="article-text">
+                    {{bioText}}
                 </p>
             </div>
         </div>
         <div class="col-sm-4 cheatsheet-col">
             <div class="cheatsheet">
-                <h1>{{artistname}}'s cheatsheet</h1>
+                <h1>{{artist.name}}'s cheatsheet</h1>
                 <h2>Birthday</h2>
-                <p>Value</p>
+                <p>{{artist.birthday}}</p>
                 <h2>From:</h2>
-                <p>Value</p>
+                <p>{{artist.country_of_origin}}</p>
                 <h2>Genre:</h2>
-                <p>Value</p>
+                <p>{{artist.genre}}</p>
                 <h2>Sounds like:</h2>
-                <p>Value</p>
+                <p>{{artist.sounds}}</p>
                 <h2>Hobby:</h2>
-                <p>Value</p>
+                <p>{{artist.hobby}}</p>
                 <h2>Inspiration:</h2>
-                <p>Value</p>
+                <p>{{artist.inspiration}}</p>
                 <h2>Favourite Singer:</h2>
-                <p>Value</p>
+                <p>{{artist.fav_singer}}</p>
                 <h2>Guilty Pleasure:</h2>
-                <p>Value</p>
+                <p>{{artist.guilty_pleasure}}</p>
                 <h2>Motto:</h2>
-                <p>Value</p>
+                <p>{{artist.motto}}</p>
             </div>
         </div>
         <div class="row icon-links">
-            <img src="img/spotify-icon.svg">
-            <img src="img/youtube-icon.svg">
-            <img src="img/apple-music-icon.svg">
+
+            <a cass="spotify-url" href="{{artist_spotify_url}}"> <img src="img/spotify-icon.svg"></a>
+            <a href="{{artist.ytb_url}}"> <img src="img/youtube-icon.svg"></a>
+            <a href="{{artist.apple_url}}"> <img src="img/apple-music-icon.svg"></a>
         </div>
     </div>  
 </div>
