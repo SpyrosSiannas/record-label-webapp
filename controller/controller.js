@@ -1,5 +1,6 @@
 'use strict';
 
+const { ExpressHandlebars } = require('express-handlebars');
 const model = require('../model/model');
 
 exports.index = (req, res) => {
@@ -41,3 +42,12 @@ exports.about = (req,res) => {
         src: 'about'
     })
 }
+
+exports.contact = (req,res)=> {
+    res.render('contact', {
+        layout: 'main',
+        title: 'Contact Us',
+        src: 'contact'
+    });
+}
+

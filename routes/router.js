@@ -15,4 +15,6 @@ router.get('/events', controller.events);
 
 router.get('/about', controller.about)
 
+router.get('/contact', controller.contact)
+
 module.exports = router;
