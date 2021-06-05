@@ -2,14 +2,14 @@ CREATE TABLE `User` (
 	`user_id` INT NOT NULL AUTO_INCREMENT,
 	`E-mail` VARCHAR(255) NOT NULL UNIQUE,
 	`Password` VARCHAR(255) NOT NULL,
-	`Telephone` VARCHAR(255) NOT NULL,
+	`Telephone` VARCHAR(255),
 	`First Name` VARCHAR(255) NOT NULL,
 	`Last Name` VARCHAR(255) NOT NULL,
-	`Street` VARCHAR(255) NOT NULL,
-	`City` VARCHAR(255) NOT NULL,
-	`Province` VARCHAR(255) NOT NULL,
-	`Postal Code` VARCHAR(255) NOT NULL,
-	`Country` VARCHAR(255) NOT NULL,
+	`Street` VARCHAR(255),
+	`City` VARCHAR(255),
+	`Province` VARCHAR(255),
+	`Postal Code` VARCHAR(255),
+	`Country` VARCHAR(255),
 	`Apt` VARCHAR(255),
 	PRIMARY KEY (`user_id`)
 );
@@ -23,26 +23,30 @@ CREATE TABLE `Places` (
 CREATE TABLE `Order` (
 	`order_id` INT NOT NULL AUTO_INCREMENT,
 	`date_ordered` VARCHAR(255) NOT NULL,
-	`Status` VARCHAR(255) NOT NULL,
+	`Status` INT NOT NULL,
 	PRIMARY KEY (`order_id`)
 );
 
 CREATE TABLE `Merch` (
 	`product_id` INT NOT NULL AUTO_INCREMENT,
-	`Type_pr` VARCHAR(255) NOT NULL,
+	`title_pr` VARCHAR(255) NOT NULL,
+	`type_pr` VARCHAR(255) NOT NULL,
 	`description_pr` VARCHAR(255) NOT NULL,
+	`price_pr` FLOAT NOT NULL,
+	`img_pr` VARCHAR(255) NOT NULL,
 	PRIMARY KEY (`product_id`)
 );
 
 CREATE TABLE `Contains` (
 	`ord_id` INT NOT NULL,
 	`merch_id` INT NOT NULL,
+	`amount` INT NOT NULL,
 	PRIMARY KEY (`ord_id`,`merch_id`)
 );
 
 CREATE TABLE `Admin` (
-	`admin_id` INT NOT NULL AUTO_INCREMENT,
-	PRIMARY KEY (`admin_id`)
+	`adm_user_id` INT NOT NULL,
+	PRIMARY KEY (`adm_user_id`)
 );
 
 CREATE TABLE `Artist` (
@@ -67,24 +71,36 @@ CREATE TABLE `Artist` (
 );
 
 CREATE TABLE `Article` (
-	`article_id` INT NOT NULL UNIQUE,
-	`artists_id` INT NOT NULL,
-	`Title` VARCHAR(255) NOT NULL,
-	`date_published` VARCHAR(255) NOT NULL,
-	`images_url` VARCHAR(255) NOT NULL,
-	`header_url` VARCHAR(255) NOT NULL,
-	`bio_url` VARCHAR(255) NOT NULL,
-	PRIMARY KEY (`article_id`,`artists_id`)
+	`article_id` INT NOT NULL AUTO_INCREMENT UNIQUE,
+	`title_art` VARCHAR(255) NOT NULL,
+	`date_art` VARCHAR(255) NOT NULL,
+	`img_art_url` VARCHAR(255) NOT NULL,
+	`text_url` VARCHAR(255) NOT NULL,
+	PRIMARY KEY (`article_id`)
 );
 
 CREATE TABLE `Event` (
-	`event_id` INT NOT NULL UNIQUE,
-	`art_id` INT NOT NULL,
-	`Place` VARCHAR(255) NOT NULL,
-	`Date` VARCHAR(255) NOT NULL,
-	`Availability` VARCHAR(255) NOT NULL,
+	`event_id` INT NOT NULL AUTO_INCREMENT UNIQUE,
+	`title_ev` VARCHAR(255) NOT NULL,
+	`place` VARCHAR(255) NOT NULL,
+	`date_ev` VARCHAR(255) NOT NULL,
+	`description_ev` VARCHAR(255) NOT NULL,
+	`availability` VARCHAR(255) NOT NULL,
 	`ticket_url` VARCHAR(255) NOT NULL,
-	PRIMARY KEY (`event_id`,`art_id`)
+	`img_ev_url` VARCHAR(255) NOT NULL,
+	PRIMARY KEY (`event_id`)
+);
+
+CREATE TABLE `References` (
+	`ref_art_id` INT NOT NULL,
+	`ref_article_id` INT NOT NULL,
+	PRIMARY KEY (`ref_art_id`,`ref_article_id`)
+);
+
+CREATE TABLE `Performs` (
+	`perf_art_id` INT NOT NULL,
+	`perf_ev_id` INT NOT NULL,
+	PRIMARY KEY (`perf_art_id`,`perf_ev_id`)
 );
 
 ALTER TABLE `Places` ADD CONSTRAINT `Places_fk0` FOREIGN KEY (`ord_id`) REFERENCES `Order`(`order_id`);
@@ -95,8 +111,12 @@ ALTER TABLE `Contains` ADD CONSTRAINT `Contains_fk0` FOREIGN KEY (`ord_id`) REFE
 
 ALTER TABLE `Contains` ADD CONSTRAINT `Contains_fk1` FOREIGN KEY (`merch_id`) REFERENCES `Merch`(`product_id`);
 
-ALTER TABLE `Admin` ADD CONSTRAINT `Admin_fk0` FOREIGN KEY (`admin_id`) REFERENCES `User`(`user_id`);
+ALTER TABLE `Admin` ADD CONSTRAINT `Admin_fk0` FOREIGN KEY (`adm_user_id`) REFERENCES `User`(`user_id`);
 
-ALTER TABLE `Article` ADD CONSTRAINT `Article_fk0` FOREIGN KEY (`artists_id`) REFERENCES `Artist`(`artist_id`);
+ALTER TABLE `References` ADD CONSTRAINT `References_fk0` FOREIGN KEY (`ref_art_id`) REFERENCES `Artist`(`artist_id`);
 
-ALTER TABLE `Event` ADD CONSTRAINT `Event_fk0` FOREIGN KEY (`art_id`) REFERENCES `Artist`(`artist_id`);
+ALTER TABLE `References` ADD CONSTRAINT `References_fk1` FOREIGN KEY (`ref_article_id`) REFERENCES `Article`(`article_id`);
+
+ALTER TABLE `Performs` ADD CONSTRAINT `Performs_fk0` FOREIGN KEY (`perf_art_id`) REFERENCES `Artist`(`artist_id`);
+
+ALTER TABLE `Performs` ADD CONSTRAINT `Performs_fk1` FOREIGN KEY (`perf_ev_id`) REFERENCES `Event`(`event_id`);

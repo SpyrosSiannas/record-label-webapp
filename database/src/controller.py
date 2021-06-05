@@ -35,6 +35,7 @@ class Controller:
         for i in range(len(values)):
             values[i] = '"' + values[i] + '"'
         sql = "INSERT INTO " + table + '(' + params + ')' + " VALUES (" + ", ".join(values) + ")"
+        print(sql)
         self.__cursor.execute(sql)
 
     # Fetches a single column from a table and returs it as an arary
@@ -48,31 +49,42 @@ class Controller:
         return res
 
     def load_database(self):
-        self.add_artists()
-        self.add_events()
+        print("===== LOADING ARTISTS =======")
+        self.add_table_from_csv("artists.csv", "Artist")
+        print("===== ARTISTS LOADED =======")
+        print("===== LOADING ARTICLES =======")
+        self.add_table_from_csv("articles.csv", "Article")
+        print("===== ARTICLES LOADED =======")
+        print("===== LOADING MERCH =======")
+        self.add_table_from_csv("products.csv", "Merch")
+        print("===== MERCH LOADED =======")
+        print("===== LOADING EVENTS =======")
+        self.add_table_from_csv("events.csv", "Event")
+        print("===== EVENTS LOADED =======")
 
-    def add_artists(self):
-        columns, body = read_csv("artists.csv")
+    def add_table_from_csv(self, csv_name, table_name):
+        columns, body = read_csv(csv_name)
         for table_line in body:
-            self.insert_values("Artist",
+            self.insert_values(table_name,
                                ", ".join(columns),
                                table_line)
         self.__cnx.commit()
 
-    def add_events(self):
+
+    ## Fix later!!! (make relationships with id)
+    def add_article_entity(self):
+        columns, body = read_csv("articles.csv")
+        for table_line in body:
+            self.insert_values("Article",
+                               ", ".join(columns),
+                               table_line)
+        self.__cnx.commit()
+
+    def add_event(self):
         columns, body = read_csv("events.csv")
         for table_line in body:
             self.insert_values("Event",
                                ", ".join(columns),
-                               table_line)
-        self.__cnx.commit()
-
-    ## Fix later!!! (make relationships with id)
-    def add_article_entity(self):
-        columns, body = read_csv("performs.csv")
-        for table_line in body:
-            self.insert_values("Performs",
-                               "art".join(columns),
                                table_line)
         self.__cnx.commit()
 

@@ -55,7 +55,6 @@ if __name__ == "__main__":
     # Main loop
     while True:
         print(option_list)
-
         cmd = int(input())
         try:
             if cmd == 1:
@@ -68,9 +67,7 @@ if __name__ == "__main__":
                 my_ctrl.query_from_file("drop_db")
                 print("===== DATABASE DROPPED ======")
             if cmd == 3:
-                print("===== LOADING ARTISTS =======")
-                my_ctrl.add_artists()
-                print("===== ARTISTS LOADED =======")
+                my_ctrl.load_database()
             if cmd == 4:
                 print("===== RESETTING DATABASE =======")
                 my_ctrl.query_from_file("drop_db")
