@@ -36,7 +36,7 @@
     margin-bottom: 1rem;
 }
 
-.sidenav .site-title:hover{
+.sidenav .user-name:hover{
     color: black;
     text-decoration: none;
     border-color: transparent;
