@@ -11,7 +11,8 @@ exports.index = (req, res) => {
         title:"Home",
         src: "index",
         logged: req.session.loggedin,
-        username: req.session.username
+        username: req.session.username,
+        authError : req.session.authError
     });
 }
 
@@ -23,7 +24,7 @@ exports.artists = (req, res) => {
             src: "artists",
             artists: artists,
             logged: req.session.loggedin,
-            username: req.session.username
+            username: req.session.username,
         });
     })
 }
@@ -95,9 +96,15 @@ exports.auth = (req, res) => {
     const password = req.body.password;
     if (username && password) {
         model.auth(username, password, (sqlUsername)=>{
-            req.session.loggedin = true;
-            req.session.username = sqlUsername;
-            res.redirect('/')
+            if (sqlUsername){
+                req.session.loggedin = true;
+                req.session.username = sqlUsername;
+                req.session.authError = false;
+                res.redirect('/')
+            } else {
+                req.session.authError = true;
+                res.redirect('/')
+            }
         })
     }
     else {

@@ -33,4 +33,8 @@ module.exports = {
             return options.inverse(this);
         }
     },
+
+    is_defined : function (value) {
+        return value !== undefined;
+    }
 }

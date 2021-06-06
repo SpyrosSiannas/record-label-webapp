@@ -46,3 +46,7 @@ function closeSideNav(){
   overlay.style.opacity = "0%";
 }
 
+function raiseAuthError(){
+  var alert = document.querySelector(".auth-error");
+  alert.show('fade');
+}

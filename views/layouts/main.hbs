@@ -5,7 +5,11 @@
     {{> header}}
     <link rel="stylesheet" href="styles/{{src}}.css">
 </head>
-<body>
+<body {{#if (is_defined authError)}}
+        {{#if authError}}onload="raiseAuthError();"
+        {{else}}onload="raiseAuthSuccess()"
+        {{/if}}
+      {{/if}}>
     {{> sidenav}}
     <div id="body-overlay" class="body-overlay"></div>
     <div id="main-panel" class="main-panel">
