@@ -103,6 +103,7 @@ exports.auth = (req, res) => {
                 req.session.authError = false;
                 res.redirect('/')
             } else {
+                req.session.regError = undefined;
                 req.session.authError = true;
                 res.redirect('/')
             }
@@ -126,6 +127,7 @@ exports.register = (req, res) => {
                 req.session.regError = false;
                 res.redirect('/');
             } else {
+                req.session.authError = undefined;
                 req.session.regError = true;
                 res.redirect('/');
             }
