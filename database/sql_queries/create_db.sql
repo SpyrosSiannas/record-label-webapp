@@ -2,15 +2,15 @@ CREATE TABLE `User` (
 	`user_id` INT NOT NULL AUTO_INCREMENT,
 	`email` VARCHAR(255) NOT NULL UNIQUE,
 	`password` VARCHAR(255) NOT NULL,
-	`Telephone` VARCHAR(255),
+	`telephone` VARCHAR(255),
 	`fname` VARCHAR(255) NOT NULL,
 	`lname` VARCHAR(255) NOT NULL,
-	`Street` VARCHAR(255),
-	`City` VARCHAR(255),
-	`Province` VARCHAR(255),
-	`Postal Code` VARCHAR(255),
-	`Country` VARCHAR(255),
-	`Apt` VARCHAR(255),
+	`street` VARCHAR(255),
+	`city` VARCHAR(255),
+	`province` VARCHAR(255),
+	`postal_code` VARCHAR(255),
+	`country` VARCHAR(255),
+	`apt` VARCHAR(255),
 	PRIMARY KEY (`user_id`)
 );
 
@@ -20,10 +20,17 @@ CREATE TABLE `Places` (
 	PRIMARY KEY (`ord_id`,`us_id`)
 );
 
-CREATE TABLE `Order` (
+CREATE TABLE `PurchaseOrder` (
 	`order_id` INT NOT NULL AUTO_INCREMENT,
 	`date_ordered` VARCHAR(255) NOT NULL,
-	`Status` INT NOT NULL,
+	`Status` INT NOT NULL DEFAULT '1',
+	`ord_tel` VARCHAR(255) NOT NULL,
+	`ord_street` VARCHAR(255) NOT NULL,
+	`ord_city` VARCHAR(255) NOT NULL,
+	`ord_province` VARCHAR(255) NOT NULL,
+	`ord_country` VARCHAR(255) NOT NULL,
+	`ord_postcode` VARCHAR(255) NOT NULL,
+	`ord_apt` VARCHAR(255) NOT NULL,
 	PRIMARY KEY (`order_id`)
 );
 
@@ -103,11 +110,11 @@ CREATE TABLE `Performs` (
 	PRIMARY KEY (`perf_art_id`,`perf_ev_id`)
 );
 
-ALTER TABLE `Places` ADD CONSTRAINT `Places_fk0` FOREIGN KEY (`ord_id`) REFERENCES `Order`(`order_id`);
+ALTER TABLE `Places` ADD CONSTRAINT `Places_fk0` FOREIGN KEY (`ord_id`) REFERENCES `PurchaseOrder`(`order_id`);
 
 ALTER TABLE `Places` ADD CONSTRAINT `Places_fk1` FOREIGN KEY (`us_id`) REFERENCES `User`(`user_id`);
 
-ALTER TABLE `Contains` ADD CONSTRAINT `Contains_fk0` FOREIGN KEY (`ord_id`) REFERENCES `Order`(`order_id`);
+ALTER TABLE `Contains` ADD CONSTRAINT `Contains_fk0` FOREIGN KEY (`ord_id`) REFERENCES `PurchaseOrder`(`order_id`);
 
 ALTER TABLE `Contains` ADD CONSTRAINT `Contains_fk1` FOREIGN KEY (`merch_id`) REFERENCES `Merch`(`product_id`);
 

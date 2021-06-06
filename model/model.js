@@ -2,6 +2,7 @@
 
 const mysql = require('mysql');
 const fs = require('fs');
+const { CONNREFUSED } = require('dns');
 
 var con = mysql.createConnection({
   host: "sql11.freemysqlhosting.net",
@@ -43,10 +44,27 @@ exports.getEvents = function(callback) {
     })
 }
 
-exports.getMerch = function(callback) {
+exports.getMerch = function(user_id, callback) {
     const sql = "SELECT * FROM Merch";
+
     con.query(sql, function(err, result) {
-        callback(result);
+        if (user_id) {
+            con.query("SELECT telephone, street, city, province,postal_code, country, apt FROM User WHERE user_id = ?", [user_id], (err, userData) => {
+                var thisUserData = userData[0];
+                for (let product of result) {
+                    product.telephone = thisUserData.telephone;
+                    product.street = thisUserData.street;
+                    product.city = thisUserData.city;
+                    product.province = thisUserData.province;
+                    product.postal_code = thisUserData.postal_code;
+                    product.country = thisUserData.country;
+                    product.apt = thisUserData.apt;
+                }
+                callback(result)
+            })
+        }else {
+            callback(result);
+        }
     })
 }
 
@@ -55,9 +73,10 @@ exports.auth = function(username, password, callback) {
     [username, password], (err, result)=>{
         if (result) {
             if(result.length){
-                con.query("SELECT fname, lname FROM User WHERE email = ?", [username], (err, result)=>{
+                con.query("SELECT fname, lname, user_id FROM User WHERE email = ?", [username], (err, result)=>{
                     var fullName = result[0].fname + ' ' + result[0].lname;
-                    callback(fullName)
+                    var userId = result[0].user_id;
+                    callback(fullName, userId)
                 });
             } else {
                 callback()
@@ -70,13 +89,39 @@ exports.register = function(mail, pwd, fname, lname, callback) {
     const sql = "INSERT INTO User(email, password, fname, lname) VALUES(?, ?, ?, ?)"
     con.query(sql, [mail, pwd, fname, lname], (err, result)=>{
         if (result) { 
-            con.query("SELECT fname, lname FROM User WHERE email = ?", [mail], (err, result)=>{
+            con.query("SELECT fname, lname, user_id FROM User WHERE email = ?", [mail], (err, result)=>{
                 var fullName = result[0].fname + ' ' + result[0].lname;
-                callback(fullName)
+                var userId = result[0].user_id;
+                callback(fullName, userId)
             });
         }
         if(err) {
             callback()
         }
     })
+}
+
+exports.placeOrder = function(order, callback) {
+    console.log(order)
+    const sql = "INSERT INTO PurchaseOrder(date_ordered, Status,ord_tel,ord_street,ord_city, ord_province,ord_country,ord_postcode,ord_apt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
+    const getLastOrderSQL = "SELECT MAX(order_id) FROM PurchaseOrder"
+    const sqlRelationship = "INSERT INTO Places(ord_id, us_id) VALUES (?, ?)"
+    con.query(sql,[
+        order.date,
+        '1', // Default Order Status
+        order.telephone,
+        order.street,
+        order.city,
+        order.province,
+        order.country,
+        order.postcode,
+        order.apt], (err,res1)=>{
+            con.query(getLastOrderSQL, (err, result) => {
+                var lastOrder = String(result[0]['MAX(order_id)']);
+                con.query(sqlRelationship, [lastOrder, order.userId], (error, res2)=>{
+                    console.log(error,res2)
+                    callback(error, res2);
+                })
+            })
+        })
 }
