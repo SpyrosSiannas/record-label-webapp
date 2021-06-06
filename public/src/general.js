@@ -45,6 +45,7 @@ function closeSuccessMesasge(){
   var regSuccess = document.querySelector(".reg-success");
   setTimeout(function()  {
     regSuccess.style.display = "none";
+    fetch('/disablesuccess')
   }, 1000)
 }
 

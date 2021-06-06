@@ -24,12 +24,12 @@
     {{> sidenav}}
     <div id="body-overlay" class="body-overlay"></div>
     <div id="main-panel" class="main-panel">
-        {{> navbar}}
         {{#if (is_defined regError)}}
             {{#unless regError}}
                 <div class="reg-success"><p>Welcome to the family {{username}}!</p></div>
             {{/unless}}
         {{/if}}
+        {{> navbar}}
         {{{body}}}
     </div>
     {{> footer}}

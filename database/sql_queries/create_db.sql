@@ -20,7 +20,7 @@ CREATE TABLE `Places` (
 	PRIMARY KEY (`ord_id`,`us_id`)
 );
 
-CREATE TABLE `Order` (
+CREATE TABLE `PurchaseOrder` (
 	`order_id` INT NOT NULL AUTO_INCREMENT,
 	`date_ordered` VARCHAR(255) NOT NULL,
 	`Status` INT NOT NULL DEFAULT '1',
@@ -110,11 +110,11 @@ CREATE TABLE `Performs` (
 	PRIMARY KEY (`perf_art_id`,`perf_ev_id`)
 );
 
-ALTER TABLE `Places` ADD CONSTRAINT `Places_fk0` FOREIGN KEY (`ord_id`) REFERENCES `Order`(`order_id`);
+ALTER TABLE `Places` ADD CONSTRAINT `Places_fk0` FOREIGN KEY (`ord_id`) REFERENCES `PurchaseOrder`(`order_id`);
 
 ALTER TABLE `Places` ADD CONSTRAINT `Places_fk1` FOREIGN KEY (`us_id`) REFERENCES `User`(`user_id`);
 
-ALTER TABLE `Contains` ADD CONSTRAINT `Contains_fk0` FOREIGN KEY (`ord_id`) REFERENCES `Order`(`order_id`);
+ALTER TABLE `Contains` ADD CONSTRAINT `Contains_fk0` FOREIGN KEY (`ord_id`) REFERENCES `PurchaseOrder`(`order_id`);
 
 ALTER TABLE `Contains` ADD CONSTRAINT `Contains_fk1` FOREIGN KEY (`merch_id`) REFERENCES `Merch`(`product_id`);
 

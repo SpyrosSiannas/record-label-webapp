@@ -19,7 +19,7 @@
     <div class="merch-modal modal" id="merch-modal-{{product_id}}">
         <div class="merch-modal-content modal-content">
             <div class="inner">
-                <form name="merchform" method="POST" action="/">
+                <form name="merchform" method="POST" action="/placeorder">
                     <div class="main-content">
                         <div class="row">
                             <div class="col-sm-4">
@@ -37,7 +37,7 @@
                             <div class="col-md align-self-center">
                                 <div class="text-inputs">
                                     <input type="hidden" name="productId" value="{{product_id}}">
-                                    <input type="hidden" name="userId" value="{{userId}}">
+                                    <input type="hidden" name="userId" value="{{../userId}}">
                                     <input type="number" placeholder="Telephone*" {{#if (not_null telephone)}}value="{{telephone}}"{{/if}}  name="telephone" required>
                                     <input type="text" placeholder="Address*" {{#if (not_null street)}}value="{{street}}"{{/if}} name="street" required>
                                     <input type="text" placeholder="City*" {{#if (not_null city)}}value="{{city}}"{{/if}} name="city" required>

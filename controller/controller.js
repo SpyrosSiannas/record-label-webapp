@@ -29,7 +29,7 @@ exports.artists = (req, res) => {
             logged: req.session.loggedin,
             username: req.session.username,
             authError : req.session.authError,
-            regError: req.session.regError,
+            regError : req.session.regError,
             userId: req.session.userId
         });
     })
@@ -45,7 +45,6 @@ exports.merch = (req,res) => {
             logged: req.session.loggedin,
             username: req.session.username,
             authError : req.session.authError,
-            regError: req.session.regError,
             userId: req.session.userId
         });
     })
@@ -122,6 +121,7 @@ exports.auth = (req, res) => {
                 req.session.username = sqlUsername;
                 req.session.authError = false;
                 req.session.userId = userId;
+                req.session.regError = undefined;
                 res.redirect(req.get('referer'))
             } else {
                 req.session.regError = undefined;
@@ -149,7 +149,7 @@ exports.register = (req, res) => {
                 req.session.username = sqlUsername;
                 req.session.regError = false;
                 req.session.userId = userId;
-                res.redirect(req.get('referer'));
+                res.redirect('/');
             } else {
                 req.session.authError = undefined;
                 req.session.regError = true;
@@ -165,3 +165,29 @@ exports.logout = (req,res) => {
     req.session.destroy()
     res.redirect(req.get('referer'))
 }
+
+exports.order = (req,res) => {
+    var order = {}
+    order.productId = req.body.productId;
+    order.userId = req.body.userId;
+    let current = new Date();
+    let cDate = current.getFullYear() + '/' + (current.getMonth() + 1) + '/' + current.getDate();
+    let cTime = current.getHours() + ":" + current.getMinutes() + ":" + current.getSeconds();
+    let dateTime = cDate + ' ' + cTime;
+    order.date = dateTime;
+    order.telephone = req.body.telephone;
+    order.street = req.body.street;
+    order.city = req.body.city;
+    order.postcode = req.body.post_code;
+    order.country = req.body.country;
+    order.province = req.body.province;
+    order.apt = req.body.apt;
+    model.placeOrder(order, (err, queryResult)=>{
+        res.redirect(req.get('referer'));
+    })
+}
+
+exports.disableSuccess = (req, res) => {
+    req.session.regError = undefined;
+    res.send()
+};

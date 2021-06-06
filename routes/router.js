@@ -23,6 +23,10 @@ router.post('/auth', controller.auth)
 
 router.post('/register', controller.register)
 
+router.post('/placeorder', controller.order)
+
 router.get('/logout', controller.logout)
+
+router.get('/disablesuccess', controller.disableSuccess)
 
 module.exports = router;

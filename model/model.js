@@ -2,6 +2,7 @@
 
 const mysql = require('mysql');
 const fs = require('fs');
+const { CONNREFUSED } = require('dns');
 
 var con = mysql.createConnection({
   host: "sql11.freemysqlhosting.net",
@@ -98,4 +99,29 @@ exports.register = function(mail, pwd, fname, lname, callback) {
             callback()
         }
     })
+}
+
+exports.placeOrder = function(order, callback) {
+    console.log(order)
+    const sql = "INSERT INTO PurchaseOrder(date_ordered, Status,ord_tel,ord_street,ord_city, ord_province,ord_country,ord_postcode,ord_apt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
+    const getLastOrderSQL = "SELECT MAX(order_id) FROM PurchaseOrder"
+    const sqlRelationship = "INSERT INTO Places(ord_id, us_id) VALUES (?, ?)"
+    con.query(sql,[
+        order.date,
+        '1', // Default Order Status
+        order.telephone,
+        order.street,
+        order.city,
+        order.province,
+        order.country,
+        order.postcode,
+        order.apt], (err,res1)=>{
+            con.query(getLastOrderSQL, (err, result) => {
+                var lastOrder = String(result[0]['MAX(order_id)']);
+                con.query(sqlRelationship, [lastOrder, order.userId], (error, res2)=>{
+                    console.log(error,res2)
+                    callback(error, res2);
+                })
+            })
+        })
 }
