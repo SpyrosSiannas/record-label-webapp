@@ -1,0 +1,16 @@
+<div class="top-header"><p>Our Merch</p></div>
+<div class="merch-grid" class="container">
+    <!-- To be automatically generated with the Hbs -->
+    {{#everyNth merch 3}}
+    {{#if isModZeroNotFirst}}
+        </div>
+    {{/if}}
+    {{#if isModZero}}
+        <div class="row gx-2">
+    {{/if}}
+            {{> product}}
+    {{#if isLast}}
+        </div>
+    {{/if}}
+    {{/everyNth}}
+</div>

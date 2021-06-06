@@ -3,3 +3,6 @@
 npm-debug.log
 .DS_Store
 /*.env
+.idea/
+env/
+__pycache__/

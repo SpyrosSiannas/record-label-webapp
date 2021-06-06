@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>CoffeStained Records - {{title}}</title>
+    <title>CoffeeStained Records - {{title}}</title>
     {{> header}}
-    <link rel="stylesheet" href="styles/{{stylesheet}}.css">
+    <link rel="stylesheet" href="styles/{{src}}.css">
 </head>
 <body>
+    {{> sidenav}}
+    <div id="body-overlay" class="body-overlay"></div>
     <div id="main-panel" class="main-panel">
         {{> navbar}}
         {{{body}}}

@@ -1,0 +1,21 @@
+<div class="top-header"><p>Our Events</p></div>
+<div class="event-grid">
+    <!-- To be automatically generated with the Hbs -->
+    <div id="column-left" class="event-column">
+
+    {{#each events}}
+        {{#if_even @index}}
+        {{else}}
+        {{> event}}
+        {{/if_even}}
+    {{/each}}
+    </div>
+    <div id="column-right" class="event-column">
+    {{#each events}}
+        {{#if_even @index}}
+            {{> event}}
+        {{/if_even}}
+    {{/each}}
+
+    </div>
+</div>
