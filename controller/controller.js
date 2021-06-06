@@ -112,6 +112,7 @@ exports.bio = (req,res) => {
 }
 
 exports.myOrders = (req,res) => {
+    // Check if user is logged in
     if (req.session.loggedin){
        const userId = req.session.userId;
        model.getOrders(userId, (orders) => {
@@ -125,6 +126,36 @@ exports.myOrders = (req,res) => {
                 authError : req.session.authError,
                 regError: req.session.regError,
                 userId: req.session.userId
+            })
+       }) 
+    } else {
+        res.redirect('/')
+    }
+}
+
+exports.myAccount = (req,res) => {
+    if (req.query.success){
+        var success = true;
+    }
+    if (req.query.error){
+        var errorMsg = "E-mail already in use"
+    }
+    // Check if user is logged in
+    if (req.session.loggedin){
+       const userId = req.session.userId;
+       model.myAccount(userId, (userDetails) => {
+            res.render('accdetails', {
+                layout: 'main',
+                title: "Account Details",
+                src: 'accdetails',
+                userDetails: userDetails,
+                logged: req.session.loggedin,
+                username: req.session.username,
+                authError : req.session.authError,
+                regError: req.session.regError,
+                userId: req.session.userId,
+                success: success,  
+                errorMsg: errorMsg
             })
        }) 
     } else {
@@ -207,6 +238,32 @@ exports.order = (req,res) => {
     model.placeOrder(order, (err, queryResult)=>{
         res.redirect(req.get('referer'));
     })
+}
+
+exports.updateAcc = (req,res) => {
+    if (req.session.loggedin) {
+        var newDetails = {};
+        const userId = req.body.userId;
+        newDetails.email = req.body.email;
+        newDetails.street = req.body.street;
+        newDetails.city = req.body.city;
+        newDetails.country = req.body.country;
+        newDetails.lname = req.body.lname;
+        newDetails.fname = req.body.fname;
+        newDetails.province = req.body.province;
+        newDetails.telephone = req.body.telephone;
+        newDetails.postal_code = req.body.post_code;
+        if (req.body.apt) {
+            newDetails.apt = req.body.apt;
+        }
+        model.updateAcc(userId, newDetails, (err,result)=>{
+            if (err) {
+                res.redirect("/accountDetails?error=1")
+            } else if (result) {
+                res.redirect("/accountDetails?success=1")
+            }
+        })
+    }
 }
 
 exports.clearOrder = (req, res)  => {

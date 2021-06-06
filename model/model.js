@@ -111,6 +111,41 @@ exports.getOrders = function (user_id, callback) {
     })
 }
 
+exports.myAccount = function (userId, callback) {
+    const sql = "SELECT * FROM User Where user_id = ?";
+    con.query(sql, [userId], (err,res)=>{
+        const thisUser = res[0];
+        console.log(thisUser)
+        callback(thisUser);
+    })
+    
+}
+
+exports.updateAcc = function (userId, newDetails, callback) {
+    
+    const getMail = "Select email FROM User WHERE user_id = " + userId;
+    var detailFormatString = "";
+    var valsToKeep = []
+    con.query(getMail, (err,res1) => {
+        const currentMail = res1[0].email;
+        for (const detail in newDetails){
+            if (detail == "email"){
+                if (newDetails[detail] == currentMail){
+                    continue;
+                }
+            }
+            detailFormatString += detail + " = ?," 
+            valsToKeep.push(newDetails[detail])
+        }
+        const str2 = detailFormatString.replace(/,$/, '');
+        const sql = "UPDATE User SET " + str2 + " WHERE user_id = " + userId;
+        con.query(sql, valsToKeep, (err,res)=>{
+            console.log(err);
+            callback(err,res);
+        });
+    });
+}
+
 exports.auth = function(username, password, callback) {
     con.query("SELECT * FROM User WHERE email = ? AND password = ?",
     [username, password], (err, result)=>{

@@ -121,7 +121,7 @@
     text-decoration: underline;
 }
 
-input:-webkit-autofill { 
+.modal-content .text-inputs input:-webkit-autofill { 
     -webkit-background-clip: text;
     background-clip: text;
 }
