@@ -111,6 +111,27 @@ exports.bio = (req,res) => {
     )
 }
 
+exports.myOrders = (req,res) => {
+    if (req.session.loggedin){
+       const userId = req.session.userId;
+       model.getOrders(userId, (orders) => {
+            res.render('myorders', {
+                layout: 'main',
+                title: "My Orders",
+                src: 'myorders',
+                orders: orders,
+                logged: req.session.loggedin,
+                username: req.session.username,
+                authError : req.session.authError,
+                regError: req.session.regError,
+                userId: req.session.userId
+            })
+       }) 
+    } else {
+        res.redirect('/')
+    }
+}
+
 exports.auth = (req, res) => {
     const username = req.body.email;
     const password = req.body.password;
@@ -182,9 +203,20 @@ exports.order = (req,res) => {
     order.country = req.body.country;
     order.province = req.body.province;
     order.apt = req.body.apt;
+    order.price = req.body.productPrice;
     model.placeOrder(order, (err, queryResult)=>{
         res.redirect(req.get('referer'));
     })
+}
+
+exports.clearOrder = (req, res)  => {
+    if (req.session.loggedin) {
+        if (req.session.userId == req.query.userId){
+            model.cancelOrder(req.query.orderId, () => {
+                res.redirect('/myOrders');
+            })
+        }
+    }
 }
 
 exports.disableSuccess = (req, res) => {

@@ -31,6 +31,7 @@ CREATE TABLE `PurchaseOrder` (
 	`ord_country` VARCHAR(255) NOT NULL,
 	`ord_postcode` VARCHAR(255) NOT NULL,
 	`ord_apt` VARCHAR(255) NOT NULL,
+	`ord_price` FLOAT NOT NULL,
 	PRIMARY KEY (`order_id`)
 );
 

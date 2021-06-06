@@ -29,4 +29,8 @@ router.get('/logout', controller.logout)
 
 router.get('/disablesuccess', controller.disableSuccess)
 
+router.get('/myorders', controller.myOrders)
+
+router.get('/clearOrder', controller.clearOrder)
+
 module.exports = router;

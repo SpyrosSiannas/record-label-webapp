@@ -1,0 +1,6 @@
+<div class="top-header"><p>{{username}}'s Orders</p></div>
+<div class="order-grid" class="container">
+    {{#each orders}}
+        {{> order userId=../userId}}
+    {{/each}}
+</div>

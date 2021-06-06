@@ -36,6 +36,7 @@
                             </div>
                             <div class="col-md align-self-center">
                                 <div class="text-inputs">
+                                    <input type="hidden" name="productPrice" value="{{price_pr}}">
                                     <input type="hidden" name="productId" value="{{product_id}}">
                                     <input type="hidden" name="userId" value="{{../userId}}">
                                     <input type="number" placeholder="Telephone*" {{#if (not_null telephone)}}value="{{telephone}}"{{/if}}  name="telephone" required>

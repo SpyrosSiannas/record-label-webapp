@@ -40,5 +40,9 @@ module.exports = {
 
     not_null : function (value) {
         return value !== null;
+    },
+
+    equals : function (value, check) {
+        return value == check;
     }
 }
