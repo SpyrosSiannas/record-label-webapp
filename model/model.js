@@ -54,10 +54,14 @@ exports.auth = function(username, password, callback) {
     con.query("SELECT * FROM User WHERE email = ? AND password = ?",
     [username, password], (err, result)=>{
         if (result) {
-            con.query("SELECT fname, lname FROM User WHERE email = ?", [username], (err, result)=>{
-                var fullName = result[0].fname + ' ' + result[0].lname;
-                callback(fullName)
-            });
+            if(result.length){
+                con.query("SELECT fname, lname FROM User WHERE email = ?", [username], (err, result)=>{
+                    var fullName = result[0].fname + ' ' + result[0].lname;
+                    callback(fullName)
+                });
+            } else {
+                callback()
+            }
         }
     })
 }
@@ -72,7 +76,7 @@ exports.register = function(mail, pwd, fname, lname, callback) {
             });
         }
         if(err) {
-            console.log(err)
+            callback()
         }
     })
 }

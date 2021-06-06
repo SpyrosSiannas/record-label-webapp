@@ -11,7 +11,9 @@ exports.index = (req, res) => {
         title:"Home",
         src: "index",
         logged: req.session.loggedin,
-        username: req.session.username
+        username: req.session.username,
+        authError : req.session.authError,
+        regError: req.session.regError
     });
 }
 
@@ -23,7 +25,7 @@ exports.artists = (req, res) => {
             src: "artists",
             artists: artists,
             logged: req.session.loggedin,
-            username: req.session.username
+            username: req.session.username,
         });
     })
 }
@@ -95,9 +97,15 @@ exports.auth = (req, res) => {
     const password = req.body.password;
     if (username && password) {
         model.auth(username, password, (sqlUsername)=>{
-            req.session.loggedin = true;
-            req.session.username = sqlUsername;
-            res.redirect('/')
+            if (sqlUsername){
+                req.session.loggedin = true;
+                req.session.username = sqlUsername;
+                req.session.authError = false;
+                res.redirect('/')
+            } else {
+                req.session.authError = true;
+                res.redirect('/')
+            }
         })
     }
     else {
@@ -112,15 +120,20 @@ exports.register = (req, res) => {
     const lname = req.body.lname;
     if (mail && password && fname && lname) {
         model.register(mail,password,fname,lname, (sqlUsername) => {
-            req.session.loggedin = true;
-            req.session.username = sqlUsername;
-            res.redirect('/')
+            if (sqlUsername) {
+                req.session.loggedin = true;
+                req.session.username = sqlUsername;
+                req.session.regError = false;
+                res.redirect('/');
+            } else {
+                req.session.regError = true;
+                res.redirect('/');
+            }
         })
     }
 }
 
 exports.logout = (req,res) => {
-    req.session.loggedin = false;
-    req.session.username = '';
+    req.session.destroy()
     res.redirect('/')
 }

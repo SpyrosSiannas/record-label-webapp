@@ -8,6 +8,11 @@
                 <h1>CoffeeStained <br> Records </h1>
             </div>
             <div class="main-content">
+                {{#if (is_defined authError)}}
+                    {{#if authError}}
+                        <div class="error-message"><p class="inner">Invalid Credentials!</p></div>
+                    {{/if}}
+                {{/if}}
                 <div class="links">
                     <a class="active">Log in</a>
                     <a onclick="closeLoginModal();openSignupModal()">Sign up</a>
@@ -32,6 +37,11 @@
                 <h1>CoffeeStained <br> Records </h1>
             </div>
             <div class="main-content">
+                {{#if (is_defined regError)}}
+                    {{#if regError}}
+                        <div class="error-message"><p class="inner">This e-mail is already in use!</p></div>
+                    {{/if}}
+                {{/if}}
                 <div class="links">
                     <a onclick="closeSignupModal(); openLoginModal()">Log in</a>
                     <a class="active">Sign up</a>

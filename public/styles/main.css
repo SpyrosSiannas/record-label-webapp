@@ -25,6 +25,16 @@ a:hover {
     transition: all 0.5s ease-in-out;
 }
 
+.main-panel .reg-success {
+  text-align: center;
+  transition: all 0.7s ease-in-out;
+}
+
+.main-panel .reg-success p{
+  color:darkgreen;
+  font-weight: 600;
+}
+
 .main-panel > .hr {
     margin-top: 0;
     margin-bottom: 0.7rem;
