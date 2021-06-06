@@ -31,6 +31,10 @@ router.get('/disablesuccess', controller.disableSuccess)
 
 router.get('/myorders', controller.myOrders)
 
+router.get('/accountDetails', controller.myAccount)
+
 router.get('/clearOrder', controller.clearOrder)
+
+router.post('/updateAcc', controller.updateAcc)
 
 module.exports = router;

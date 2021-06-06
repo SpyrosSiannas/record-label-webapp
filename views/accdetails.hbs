@@ -1,0 +1,39 @@
+<div class="top-header"><p>{{username}}'s Account</p></div>
+{{#if success}}
+<div class="success">
+    <p>Account Updated Successfuly</p>
+</div>
+{{/if}}
+{{#if errorMsg}}
+    <div class="error">
+        <p>Something went Wrong: {{errorMsg}}</p>
+    </div>
+{{/if}}
+<form id="accForm" action="/updateAcc" method="POST">
+    <input type="hidden" name="userId" value="{{userId}}">
+    {{#with userDetails}}
+    <div class="container justify-content-center">
+        <div class="row">
+            <div class="col">
+                <input type="text" class="form-control" placeholder="First Name*" {{#if (not_null fname)}}value="{{fname}}"{{/if}}  name="fname" required>
+                <input type="text" class="form-control" placeholder="E-mail*" {{#if (not_null email)}}value="{{email}}"{{/if}}  name="email" required>
+                <input type="text" class="form-control" placeholder="Address*" {{#if (not_null street)}}value="{{street}}"{{/if}} name="street" required>
+                <input type="text" class="form-control" placeholder="City*" {{#if (not_null city)}}value="{{city}}"{{/if}} name="city" required>
+                <input type="text" class="form-control" placeholder="Country*" {{#if (not_null country)}}value="{{country}}"{{/if}} name="country" required>
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Last Name*" {{#if (not_null lname)}}value="{{lname}}"{{/if}}  name="lname" required>
+                <input type="number" class="form-control" placeholder="Telephone*" {{#if (not_null telephone)}}value="{{telephone}}"{{/if}}  name="telephone" required>
+                <input type="number" class="form-control" placeholder="Postcode*" {{#if (not_null postal_code)}}value="{{postal_code}}"{{/if}} name="post_code" required>
+                <input type="text" class="form-control" placeholder="Province*" {{#if (not_null province)}}value="{{province}}"{{/if}} name="province" required>
+                <input type="text" class="form-control" placeholder="Appartment / Suite" {{#if (not_null apt)}}value="{{apt}}"{{/if}}  name="apt">
+            </div>
+        </div>
+        <div class="btn-cont">
+            <input class="form-control" id="acc-submit" type="submit">
+        </div>
+    </div>
+    {{/with}}
+</form>
+<form id="pwdReset" method="POST">
+</form>
