@@ -1,12 +1,16 @@
 <div class="top-header"><p>Our Merch</p></div>
 <div class="merch-grid" class="container">
     <!-- To be automatically generated with the Hbs -->
-    {{#times 3}}
-        <div class="row gx-2">
-            {{#times 3}}
-                {{> product}}
-            {{/times}}
+    {{#everyNth merch 3}}
+    {{#if isModZeroNotFirst}}
         </div>
-    {{/times}}
-
+    {{/if}}
+    {{#if isModZero}}
+        <div class="row gx-2">
+    {{/if}}
+            {{> product}}
+    {{#if isLast}}
+        </div>
+    {{/if}}
+    {{/everyNth}}
 </div>

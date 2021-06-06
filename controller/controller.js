@@ -23,11 +23,14 @@ exports.artists = (req, res) => {
 }
 
 exports.merch = (req,res) => {
-    res.render('merch', {
-        layout: "main",
-        title:"Merchandise",
-        src:"merch"
-    });
+    model.getMerch((merch) => {
+        res.render('merch', {
+            layout: "main",
+            title:"Merchandise",
+            src:"merch",
+            merch: merch
+        });
+    })
 }
 
 exports.events =  (req,res) => {

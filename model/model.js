@@ -28,7 +28,6 @@ exports.getArtistSingle = function(artistId, callback) {
 
 exports.getEvents = function(callback) {
     const sql = "SELECT * FROM Event";
-
     con.query(sql, function(err,result) {
         var count = 0;
         var fsHandler = function(err, data) {
@@ -41,5 +40,12 @@ exports.getEvents = function(callback) {
         for (const myEvent of result){
             fs.readFile("./public/" + myEvent.description_ev, fsHandler);
         }
+    })
+}
+
+exports.getMerch = function(callback) {
+    const sql = "SELECT * FROM Merch";
+    con.query(sql, function(err, result) {
+        callback(result);
     })
 }
