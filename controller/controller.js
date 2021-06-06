@@ -31,10 +31,13 @@ exports.merch = (req,res) => {
 }
 
 exports.events =  (req,res) => {
-    res.render('events', {
-        layout: "main",
-        title:"Events",
-        src:"events"
+    model.getEvents((events) => {
+        res.render('events', {
+            layout: "main",
+            title:"Events",
+            src:"events",
+            events: events,
+        });
     });
 }
 
