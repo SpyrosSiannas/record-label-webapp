@@ -24,6 +24,14 @@
     flex-direction: column;
 }
 
+.event-container {
+    margin-top: 0.7rem;
+}
+
+.event-container p {
+    padding: 0.3rem;
+}
+
 #column-left {
     margin-right: 1rem;
     flex: 1 0 44%;
