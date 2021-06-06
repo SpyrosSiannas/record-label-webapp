@@ -36,5 +36,9 @@ module.exports = {
 
     is_defined : function (value) {
         return value !== undefined;
+    },
+
+    not_null : function (value) {
+        return value !== null;
     }
 }

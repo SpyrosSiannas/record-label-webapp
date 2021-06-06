@@ -3,6 +3,7 @@
 const { request } = require('express');
 const { ExpressHandlebars } = require('express-handlebars');
 const session = require('express-session');
+const { isUndefined } = require('underscore');
 const model = require('../model/model');
 
 exports.index = (req, res) => {
@@ -13,7 +14,8 @@ exports.index = (req, res) => {
         logged: req.session.loggedin,
         username: req.session.username,
         authError : req.session.authError,
-        regError: req.session.regError
+        regError: req.session.regError,
+        userId: req.session.userId
     });
 }
 
@@ -26,19 +28,25 @@ exports.artists = (req, res) => {
             artists: artists,
             logged: req.session.loggedin,
             username: req.session.username,
+            authError : req.session.authError,
+            regError: req.session.regError,
+            userId: req.session.userId
         });
     })
 }
 
 exports.merch = (req,res) => {
-    model.getMerch((merch) => {
+    model.getMerch(req.session.userId, (merch) => {
         res.render('merch', {
             layout: "main",
             title:"Merchandise",
             src:"merch",
             merch: merch,
             logged: req.session.loggedin,
-            username: req.session.username
+            username: req.session.username,
+            authError : req.session.authError,
+            regError: req.session.regError,
+            userId: req.session.userId
         });
     })
 }
@@ -52,6 +60,9 @@ exports.events =  (req,res) => {
             events: events,
             logged: req.session.loggedin,
             username: req.session.username,
+            authError : req.session.authError,
+            regError: req.session.regError,
+            userId: req.session.userId
         });
     });
 }
@@ -62,7 +73,10 @@ exports.about = (req,res) => {
         title: 'About Coffeestained',
         src: 'about',
         logged: req.session.loggedin,
-        username: req.session.username
+        username: req.session.username,
+        authError : req.session.authError,
+        regError: req.session.regError,
+        userId: req.session.userId
     })
 }
 
@@ -72,7 +86,10 @@ exports.contact = (req,res)=> {
         title: 'Contact Us',
         src: 'contact',
         logged: req.session.loggedin,
-        username: req.session.username
+        username: req.session.username,
+        authError : req.session.authError,
+        regError: req.session.regError,
+        userId: req.session.userId
     });
 }
 
@@ -86,7 +103,10 @@ exports.bio = (req,res) => {
                 bioText: text,
                 artist: artist[0],
                 logged: req.session.loggedin,
-                username: req.session.username
+                username: req.session.username,
+                authError : req.session.authError,
+                regError: req.session.regError,
+                userId: req.session.userId
             })
         }
     )
@@ -96,16 +116,19 @@ exports.auth = (req, res) => {
     const username = req.body.email;
     const password = req.body.password;
     if (username && password) {
-        model.auth(username, password, (sqlUsername)=>{
+        model.auth(username, password, (sqlUsername, userId)=>{
             if (sqlUsername){
                 req.session.loggedin = true;
                 req.session.username = sqlUsername;
                 req.session.authError = false;
-                res.redirect('/')
+                req.session.userId = userId;
+                res.redirect(req.get('referer'))
             } else {
                 req.session.regError = undefined;
                 req.session.authError = true;
-                res.redirect('/')
+                req.session.username = undefined;
+                req.session.loggedin = false;
+                res.redirect(req.get('referer'))
             }
         })
     }
@@ -120,16 +143,19 @@ exports.register = (req, res) => {
     const fname = req.body.fname;
     const lname = req.body.lname;
     if (mail && password && fname && lname) {
-        model.register(mail,password,fname,lname, (sqlUsername) => {
+        model.register(mail,password,fname,lname, (sqlUsername, userId) => {
             if (sqlUsername) {
                 req.session.loggedin = true;
                 req.session.username = sqlUsername;
                 req.session.regError = false;
-                res.redirect('/');
+                req.session.userId = userId;
+                res.redirect(req.get('referer'));
             } else {
                 req.session.authError = undefined;
                 req.session.regError = true;
-                res.redirect('/');
+                req.session.userId = undefined;
+                req.session.loggedin = false;
+                res.redirect(req.get('referer'));
             }
         })
     }
@@ -137,5 +163,5 @@ exports.register = (req, res) => {
 
 exports.logout = (req,res) => {
     req.session.destroy()
-    res.redirect('/')
+    res.redirect(req.get('referer'))
 }

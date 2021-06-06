@@ -3,7 +3,8 @@
     <div class="product-text">
         <div class="product-name">
             <!-- To be loaded dynamically -->
-            <p>{{title_pr}}</p>
+            <p>{{title_pr}}<br>
+                {{price_pr}}</p>
         </div>
         <div class="product-description">
             <!-- To be loaded dynamically -->
@@ -12,5 +13,5 @@
             </p>
         </div>
     </div>
-    <a href="/merch"><img class="buy-btn" src="/img/buy-button.svg" alt=""></a>
+    <a onclick="{{#if logged}}openMerchModal({{product_id}}){{else}}openLoginModal(){{/if}}"><img class="buy-btn" src="/img/buy-button.svg" alt=""></a>
 </div>

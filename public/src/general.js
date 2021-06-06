@@ -8,6 +8,9 @@ window.onclick = function(event) {
     if (event.target.id == "body-overlay") {
         closeSideNav();
     }
+    if (event.target.classList.contains("merch-modal")){
+      closeMerchModal(event.target.id);
+    }
 }
 
 function openLoginModal(){

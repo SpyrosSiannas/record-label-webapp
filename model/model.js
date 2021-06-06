@@ -43,10 +43,27 @@ exports.getEvents = function(callback) {
     })
 }
 
-exports.getMerch = function(callback) {
+exports.getMerch = function(user_id, callback) {
     const sql = "SELECT * FROM Merch";
+
     con.query(sql, function(err, result) {
-        callback(result);
+        if (user_id) {
+            con.query("SELECT telephone, street, city, province,postal_code, country, apt FROM User WHERE user_id = ?", [user_id], (err, userData) => {
+                var thisUserData = userData[0];
+                for (let product of result) {
+                    product.telephone = thisUserData.telephone;
+                    product.street = thisUserData.street;
+                    product.city = thisUserData.city;
+                    product.province = thisUserData.province;
+                    product.postal_code = thisUserData.postal_code;
+                    product.country = thisUserData.country;
+                    product.apt = thisUserData.apt;
+                }
+                callback(result)
+            })
+        }else {
+            callback(result);
+        }
     })
 }
 
@@ -55,9 +72,10 @@ exports.auth = function(username, password, callback) {
     [username, password], (err, result)=>{
         if (result) {
             if(result.length){
-                con.query("SELECT fname, lname FROM User WHERE email = ?", [username], (err, result)=>{
+                con.query("SELECT fname, lname, user_id FROM User WHERE email = ?", [username], (err, result)=>{
                     var fullName = result[0].fname + ' ' + result[0].lname;
-                    callback(fullName)
+                    var userId = result[0].user_id;
+                    callback(fullName, userId)
                 });
             } else {
                 callback()
@@ -70,9 +88,10 @@ exports.register = function(mail, pwd, fname, lname, callback) {
     const sql = "INSERT INTO User(email, password, fname, lname) VALUES(?, ?, ?, ?)"
     con.query(sql, [mail, pwd, fname, lname], (err, result)=>{
         if (result) { 
-            con.query("SELECT fname, lname FROM User WHERE email = ?", [mail], (err, result)=>{
+            con.query("SELECT fname, lname, user_id FROM User WHERE email = ?", [mail], (err, result)=>{
                 var fullName = result[0].fname + ' ' + result[0].lname;
-                callback(fullName)
+                var userId = result[0].user_id;
+                callback(fullName, userId)
             });
         }
         if(err) {
