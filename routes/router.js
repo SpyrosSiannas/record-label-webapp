@@ -19,4 +19,10 @@ router.get('/contact', controller.contact)
 
 router.get('/artist', controller.bio)
 
+router.post('/auth', controller.auth)
+
+router.post('/register', controller.register)
+
+router.get('/logout', controller.logout)
+
 module.exports = router;
