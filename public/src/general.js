@@ -18,6 +18,10 @@ function openLoginModal(){
 function closeLoginModal(){
     var modal = document.querySelector("#signin-modal");
     modal.style.display = "none";
+    var modalText = modal.querySelector(".error-message");
+    if (modalText){
+      modalText.style.display = "none";
+    }
 }
 
 function openSignupModal(){
@@ -28,6 +32,17 @@ function openSignupModal(){
 function closeSignupModal(){
     var modal = document.querySelector("#signup-modal");
     modal.style.display = "none";
+    var modalText = modal.querySelector(".error-message");
+    if (modalText){
+      modalText.style.display = "none";
+    }
+}
+
+function closeSuccessMesasge(){
+  var regSuccess = document.querySelector(".reg-success");
+  setTimeout(function()  {
+    regSuccess.style.display = "none";
+  }, 1000)
 }
 
 function openSideNav(){
@@ -44,9 +59,4 @@ function closeSideNav(){
   var overlay = document.querySelector(".body-overlay");
   overlay.style.display = "none";
   overlay.style.opacity = "0%";
-}
-
-function raiseAuthError(){
-  var alert = document.querySelector(".auth-error");
-  alert.show('fade');
 }

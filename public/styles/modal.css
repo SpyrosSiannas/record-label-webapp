@@ -138,3 +138,12 @@ input:-webkit-autofill {
         width:90vw;
     }
 }
+
+.modal-content .error-message {
+    text-align: center;
+}
+
+.modal-content .error-message p {
+    font-weight: 600;
+    color:rgb(97, 19, 19);
+}

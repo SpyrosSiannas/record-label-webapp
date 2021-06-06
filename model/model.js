@@ -60,10 +60,7 @@ exports.auth = function(username, password, callback) {
                     callback(fullName)
                 });
             } else {
-                con.query("SELECT fname, lname FROM User WHERE email = ?", [username], (err, result)=>{
-                    var fullName = result[0].fname + ' ' + result[0].lname;
-                    callback()
-                });
+                callback()
             }
         }
     })
@@ -79,7 +76,7 @@ exports.register = function(mail, pwd, fname, lname, callback) {
             });
         }
         if(err) {
-            console.log(err)
+            callback()
         }
     })
 }

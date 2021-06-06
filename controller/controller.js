@@ -12,7 +12,8 @@ exports.index = (req, res) => {
         src: "index",
         logged: req.session.loggedin,
         username: req.session.username,
-        authError : req.session.authError
+        authError : req.session.authError,
+        regError: req.session.regError
     });
 }
 
@@ -119,15 +120,20 @@ exports.register = (req, res) => {
     const lname = req.body.lname;
     if (mail && password && fname && lname) {
         model.register(mail,password,fname,lname, (sqlUsername) => {
-            req.session.loggedin = true;
-            req.session.username = sqlUsername;
-            res.redirect('/')
+            if (sqlUsername) {
+                req.session.loggedin = true;
+                req.session.username = sqlUsername;
+                req.session.regError = false;
+                res.redirect('/');
+            } else {
+                req.session.regError = true;
+                res.redirect('/');
+            }
         })
     }
 }
 
 exports.logout = (req,res) => {
-    req.session.loggedin = false;
-    req.session.username = '';
+    req.session.destroy()
     res.redirect('/')
 }
