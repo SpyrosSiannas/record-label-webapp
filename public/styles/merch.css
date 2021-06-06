@@ -8,6 +8,10 @@
     font-size: 40px;
 }
 
+.product-content {
+    margin-top: 0.7rem;
+}
+
 .col-md {
     text-align: center;
 }
