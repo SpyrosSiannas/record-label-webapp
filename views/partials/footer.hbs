@@ -12,10 +12,10 @@
                     <a class="active">Log in</a>
                     <a onclick="closeLoginModal();openSignupModal()">Sign up</a>
                 </div>
-                <form>
+                <form name="loginform" action="/auth" method="POST">
                     <div class="text-inputs">
-                        <input placeholder="yourmail@example.com" id="mail" type="email" required><br>
-                        <input placeholder="password" id="pwd" type="password" required><br>
+                        <input placeholder="yourmail@example.com" name="email" id="mail" type="email" required><br>
+                        <input placeholder="password" id="pwd" name="password" type="password" required><br>
                     </div>
                     <input value="Login" class="submit" id="signin-submit" type="submit">
                 </form>
@@ -37,12 +37,12 @@
                     <a class="active">Sign up</a>
                 </div>
                 <p class="paragraph">Sign up to enjoy exclusive releases, special offers, and to be the first to hear about new records and signings</p>
-                <form>
+                <form method="POST" action="/register">
                     <div class="text-inputs">
-                        <input placeholder="First Name*" id="signup-first-name" type="text" required><br>
-                        <input placeholder="Last Name*" id="signup-last-name" type="text" required><br>
-                        <input placeholder="E-mail*" id="signup-e-mail" type="email" required><br>
-                        <input placeholder="Password*" id="signup-pwd" type="password" required><br>
+                        <input placeholder="First Name*" name="fname" id="signup-first-name" type="text" required><br>
+                        <input placeholder="Last Name*" name="lname" id="signup-last-name" type="text" required><br>
+                        <input placeholder="E-mail*" name="email" id="signup-e-mail" type="email" required><br>
+                        <input placeholder="Password*" name="password" id="signup-pwd" type="password" required><br>
                     </div>
                     <input value="Create Account" class="submit" id="signup-submit" type="submit">
                 </form>

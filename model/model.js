@@ -49,3 +49,30 @@ exports.getMerch = function(callback) {
         callback(result);
     })
 }
+
+exports.auth = function(username, password, callback) {
+    con.query("SELECT * FROM User WHERE email = ? AND password = ?",
+    [username, password], (err, result)=>{
+        if (result) {
+            con.query("SELECT fname, lname FROM User WHERE email = ?", [username], (err, result)=>{
+                var fullName = result[0].fname + ' ' + result[0].lname;
+                callback(fullName)
+            });
+        }
+    })
+}
+
+exports.register = function(mail, pwd, fname, lname, callback) {
+    const sql = "INSERT INTO User(email, password, fname, lname) VALUES(?, ?, ?, ?)"
+    con.query(sql, [mail, pwd, fname, lname], (err, result)=>{
+        if (result) { 
+            con.query("SELECT fname, lname FROM User WHERE email = ?", [mail], (err, result)=>{
+                var fullName = result[0].fname + ' ' + result[0].lname;
+                callback(fullName)
+            });
+        }
+        if(err) {
+            console.log(err)
+        }
+    })
+}
