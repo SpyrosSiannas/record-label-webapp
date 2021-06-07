@@ -2,6 +2,7 @@
 
 const mysql = require('mysql');
 const fs = require('fs');
+const e = require('express');
 
 var con = mysql.createConnection({
   host: "sql11.freemysqlhosting.net",
@@ -199,6 +200,23 @@ exports.updateAcc = function (userId, newDetails, callback) {
             callback(err,res);
         });
     });
+}
+
+exports.changePassword = function (newPass, oldPass, userId, callback) {
+    const sql = "SELECT password FROM User WHERE user_id = ?"
+    con.query(sql, [userId], (err,res)=>{
+        const realOldPass = res[0].password;
+        if (realOldPass == oldPass) {
+            const sql2 = "UPDATE User SET password = ? WHERE user_id = ?"
+            con.query(sql2, [newPass, userId], (err2,res2)=>{
+                if (!err2) {
+                    callback(true);
+                }
+            })
+        } else {
+            callback(false);
+        }
+    })
 }
 
 exports.auth = function(username, password, callback) {

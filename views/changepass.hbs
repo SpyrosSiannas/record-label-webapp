@@ -1,0 +1,29 @@
+<div class="top-header"><p>Change Pass</p></div>
+{{#if success}}
+<div class="success">
+    <p>Password changed successfuly</p>
+</div>
+{{/if}}
+{{#if error}}
+<div class="error">
+    <p>Invalid Password</p>
+</div>
+{{/if}}
+<div class="row justify-content-center main-cont">
+    <form method="POST" action="/changePassword" id="passwordForm">
+        <div class="row">
+            <div class="row">
+                <label for="oldpw">Old Password:</label>
+                <input class="form-control" type="password" name="oldpass" required>
+            </div>
+            <div class="row">
+                <label for="oldpw">New Password:</label>
+                <input class="form-control" type="password" name="newpass" required>
+            </div>
+            <div class="row">
+                <button class="form-control" id="submit-btn">Change Password</button>
+            </div>
+        </div>
+
+    </form>
+</div>

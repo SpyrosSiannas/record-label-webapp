@@ -41,4 +41,8 @@ router.post('/updateAcc', controller.updateAcc);
 
 router.get('/manageOrders', controller.manageOrders);
 
+router.get('/changePass', controller.changePass);
+
+router.post('/changePassword', controller.changePassword);
+
 module.exports = router;
