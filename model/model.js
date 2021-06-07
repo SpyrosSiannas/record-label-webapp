@@ -98,14 +98,69 @@ exports.getOrders = function (user_id, callback) {
             const userOrder = res[i];
             const thisId = userOrder.ord_id;
             con.query(fetchOrderDetails, [thisId], (err2, res2) => {
+                                        console.log(err2)
+
                 con.query(fetchOrderProduct, [thisId], (err3, res3)=>{
+                                            console.log(err3)
+
                     const thisProductId = res3[0];
                     con.query(fetchProductDetails, [thisProductId.merch_id], (err4, res4)=>{
+                                                console.log(err4)
+
                         const thisOrder = res2[0];
                         const thisMerch = res4[0];
                         finalCallback(thisOrder, thisId,thisMerch.img_pr,callback,orders,res.length)
                     })
                 })
+            })
+        }
+    })
+}
+
+exports.getOrdersAdmin = function(callback) {
+    const sql = "SELECT order_id from PurchaseOrder"
+    const sql2 = "SELECT merch_id from Contains WHERE ord_id = ?"
+    const sql3 = "SELECT fname, lname,user_id from User where user_id = ?"
+    const sql4 = "SELECT us_id FROM Places where ord_id = ?"
+    const sql5 = "SELECT * from PurchaseOrder where order_id = ?"
+    var counter = 0;
+    var orders = [];
+
+    var finalCallback = function(thisOrder,thisUserData,thisProductId,thisCallback,length) {
+        // Make an object that accumulates all the desired data
+        var order = new Object();
+        order.order_id = thisOrder.order_id;
+        order.date_ordered = thisOrder.date_ordered;
+        order.price = thisOrder.ord_price;
+        order.name = thisUserData.fname + ' ' + thisUserData.lname;
+        order.user_id = thisUserData.user_id
+        order.product_id = thisProductId;
+        order.Status = thisOrder.Status;
+        orders.push(order);
+        counter++;
+        if (counter == length){
+            thisCallback(orders)
+        }
+    }
+
+    con.query(sql, (err,orderIds)=>{
+        if (!orderIds.length){
+            callback([])
+        }
+        for (var i = orderIds.length - 1; i >=0; i--){
+            const thisOrderId = orderIds[i].order_id;
+            con.query(sql2, [thisOrderId], (err2, res2)=>{
+                const thisMerhId = res2[0].merch_id;
+                con.query(sql4, [thisOrderId], (err3, res3) => {
+                    const thisUserId = res3[0].us_id;
+                    con.query(sql3, [thisUserId], (err4,res4)=> {
+                        const thisUserData = res4[0];
+                        con.query(sql5, [thisOrderId], (err5, res5) => {
+                            const thisOrder = res5[0];
+                            finalCallback(thisOrder,thisUserData,thisMerhId,callback,orderIds.length)
+                        })
+                    })
+                }) 
             })
         }
     })
@@ -154,7 +209,13 @@ exports.auth = function(username, password, callback) {
                 con.query("SELECT fname, lname, user_id FROM User WHERE email = ?", [username], (err, result)=>{
                     var fullName = result[0].fname + ' ' + result[0].lname;
                     var userId = result[0].user_id;
-                    callback(fullName, userId)
+                    con.query("SELECT adm_user_id from Admin WHERE adm_user_id = ?", [userId], (err,result2)=>{
+                        if (result2.length) {
+                            callback(fullName, userId, true)
+                        } else {
+                            callback(fullName,userId, false)
+                        }
+                    })
                 });
             } else {
                 callback()
@@ -195,7 +256,7 @@ exports.placeOrder = function(order, callback) {
         order.country,
         order.postcode,
         order.apt], (err,res1)=>{
-            console.log(err)
+            console.log(res1)
             con.query(getLastOrderSQL, (err, result) => {
                 var lastOrder = String(result[0]['MAX(order_id)']);
                 con.query(sqlRelationship, [lastOrder, order.userId], (error, res2)=>{
@@ -210,6 +271,14 @@ exports.placeOrder = function(order, callback) {
 exports.cancelOrder = function(orderId, callback){
     const sql = "UPDATE PurchaseOrder SET Status = 0 WHERE order_id = ?"
     con.query(sql, [Number(orderId)], (err, res)=>{
+        callback()
+    })
+}
+
+exports.deliverOrder = function(orderId, callback){
+    const sql = "UPDATE PurchaseOrder SET Status = 2 WHERE order_id = ?"
+    con.query(sql, [Number(orderId)], (err, res)=>{
+        console.log(err,res)
         callback()
     })
 }

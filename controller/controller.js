@@ -1,9 +1,5 @@
 'use strict';
 
-const { request } = require('express');
-const { ExpressHandlebars } = require('express-handlebars');
-const session = require('express-session');
-const { isUndefined } = require('underscore');
 const model = require('../model/model');
 
 exports.index = (req, res) => {
@@ -15,7 +11,8 @@ exports.index = (req, res) => {
         username: req.session.username,
         authError : req.session.authError,
         regError: req.session.regError,
-        userId: req.session.userId
+        userId: req.session.userId,
+			isAdmin: req.session.isAdmin
     });
 }
 
@@ -30,7 +27,8 @@ exports.artists = (req, res) => {
             username: req.session.username,
             authError : req.session.authError,
             regError : req.session.regError,
-            userId: req.session.userId
+            userId: req.session.userId,
+			isAdmin: req.session.isAdmin
         });
     })
 }
@@ -45,7 +43,8 @@ exports.merch = (req,res) => {
             logged: req.session.loggedin,
             username: req.session.username,
             authError : req.session.authError,
-            userId: req.session.userId
+            userId: req.session.userId,
+			isAdmin: req.session.isAdmin
         });
     })
 }
@@ -61,7 +60,8 @@ exports.events =  (req,res) => {
             username: req.session.username,
             authError : req.session.authError,
             regError: req.session.regError,
-            userId: req.session.userId
+            userId: req.session.userId,
+			isAdmin: req.session.isAdmin
         });
     });
 }
@@ -75,7 +75,8 @@ exports.about = (req,res) => {
         username: req.session.username,
         authError : req.session.authError,
         regError: req.session.regError,
-        userId: req.session.userId
+        userId: req.session.userId,
+			isAdmin: req.session.isAdmin
     })
 }
 
@@ -88,7 +89,8 @@ exports.contact = (req,res)=> {
         username: req.session.username,
         authError : req.session.authError,
         regError: req.session.regError,
-        userId: req.session.userId
+        userId: req.session.userId,
+			isAdmin: req.session.isAdmin
     });
 }
 
@@ -105,7 +107,8 @@ exports.bio = (req,res) => {
                 username: req.session.username,
                 authError : req.session.authError,
                 regError: req.session.regError,
-                userId: req.session.userId
+                userId: req.session.userId,
+			    isAdmin: req.session.isAdmin
             })
         }
     )
@@ -125,7 +128,8 @@ exports.myOrders = (req,res) => {
                 username: req.session.username,
                 authError : req.session.authError,
                 regError: req.session.regError,
-                userId: req.session.userId
+                userId: req.session.userId,
+			    isAdmin: req.session.isAdmin
             })
        }) 
     } else {
@@ -142,7 +146,7 @@ exports.myAccount = (req,res) => {
     }
     // Check if user is logged in
     if (req.session.loggedin){
-       const userId = req.session.userId;
+       const userId = req.session.userId
        model.myAccount(userId, (userDetails) => {
             res.render('accdetails', {
                 layout: 'main',
@@ -154,8 +158,32 @@ exports.myAccount = (req,res) => {
                 authError : req.session.authError,
                 regError: req.session.regError,
                 userId: req.session.userId,
+			    isAdmin: req.session.isAdmin,
                 success: success,  
                 errorMsg: errorMsg
+            })
+       }) 
+    } else {
+        res.redirect('/')
+    }
+}
+
+exports.manageOrders = (req,res) => {
+    // Check if user is logged in
+    if (req.session.loggedin && req.session.isAdmin){
+       const userId = req.session.userId;
+       model.getOrdersAdmin((ordersAdmin) => {
+            res.render('manageorders', {
+                layout: 'main',
+                title: "Manage Orders",
+                src: 'manageorders',
+                orders: ordersAdmin,
+                logged: req.session.loggedin,
+                username: req.session.username,
+                authError : req.session.authError,
+                regError: req.session.regError,
+                userId: req.session.userId,
+			    isAdmin: req.session.isAdmin
             })
        }) 
     } else {
@@ -167,13 +195,14 @@ exports.auth = (req, res) => {
     const username = req.body.email;
     const password = req.body.password;
     if (username && password) {
-        model.auth(username, password, (sqlUsername, userId)=>{
+        model.auth(username, password, (sqlUsername, userId, isAdmin)=>{
             if (sqlUsername){
                 req.session.loggedin = true;
                 req.session.username = sqlUsername;
                 req.session.authError = false;
                 req.session.userId = userId;
                 req.session.regError = undefined;
+                req.session.isAdmin = isAdmin;
                 res.redirect(req.get('referer'))
             } else {
                 req.session.regError = undefined;
@@ -200,12 +229,12 @@ exports.register = (req, res) => {
                 req.session.loggedin = true;
                 req.session.username = sqlUsername;
                 req.session.regError = false;
-                req.session.userId = userId;
+                req.session.userId,
                 res.redirect('/');
             } else {
                 req.session.authError = undefined;
                 req.session.regError = true;
-                req.session.userId = undefined;
+                req.session.userId,
                 req.session.loggedin = false;
                 res.redirect(req.get('referer'));
             }
@@ -271,6 +300,17 @@ exports.clearOrder = (req, res)  => {
         if (req.session.userId == req.query.userId){
             model.cancelOrder(req.query.orderId, () => {
                 res.redirect('/myOrders');
+            })
+        }
+    }
+}
+
+
+exports.deliverOrder = (req, res)  => {
+    if (req.session.loggedin && req.session.isAdmin) {
+        if (req.session.userId == req.query.userId){
+            model.deliverOrder(req.query.orderId, () => {
+                res.redirect('/manageOrders');
             })
         }
     }
