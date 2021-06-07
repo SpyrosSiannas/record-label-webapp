@@ -1,5 +1,4 @@
 const express = require('express');
-const reload = require('reload')
 const app = express();
 const exphbs = require('express-handlebars');
 const routes = require('./routes/router');
@@ -41,7 +40,6 @@ app.listen(process.env.PORT || 80, (error)=>{
         console.log("Listening . . .")
     }
 });
-reload(app);
 
 app.set('view engine', 'hbs');
 app.use('/', routes);
