@@ -5,5 +5,11 @@
     </div>
     <a href="/accountDetails">Account Details</a>
     <a href="/myorders">My Orders</a>
+    <div style="border-bottom: 2px solid black"></div>
+    {{#if isAdmin}}
+    <a href="/manageOrders">Manage Orders</a>
+    <a href="/myorders">Inbox</a>
+    <div style="border-bottom: 2px solid black"></div>
+    {{/if}}
     <a href="/logout">LogOut</a>
 </div>
