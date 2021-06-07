@@ -124,3 +124,23 @@
 .merch-modal .text-inputs {
     font-size: 22px;
 }
+
+.success {
+    text-align: center;
+    color: darkgreen;
+}
+
+.success p {
+    font-weight: 800;
+    font-size: 24px;
+}
+
+.error {
+    color: darkred;
+    text-align: center
+}
+
+.error p{
+    font-weight: 800;
+    font-size: 24px;
+}
