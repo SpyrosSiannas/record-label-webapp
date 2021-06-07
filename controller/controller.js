@@ -1,5 +1,6 @@
 'use strict';
 
+const { query } = require('express');
 const model = require('../model/model');
 
 exports.index = (req, res) => {
@@ -34,6 +35,12 @@ exports.artists = (req, res) => {
 }
 
 exports.merch = (req,res) => {
+    if (req.query.success){
+        var success = true;
+    } 
+    if (req.query.error) {
+        var error = true;
+    }
     model.getMerch(req.session.userId, (merch) => {
         res.render('merch', {
             layout: "main",
@@ -44,7 +51,9 @@ exports.merch = (req,res) => {
             username: req.session.username,
             authError : req.session.authError,
             userId: req.session.userId,
-			isAdmin: req.session.isAdmin
+			isAdmin: req.session.isAdmin,
+            success: success,
+            error: error
         });
     })
 }
@@ -265,7 +274,11 @@ exports.order = (req,res) => {
     order.apt = req.body.apt;
     order.price = req.body.productPrice;
     model.placeOrder(order, (err, queryResult)=>{
-        res.redirect(req.get('referer'));
+        if (err) {
+            res.redirect("/merch?error=1")
+        } else if (queryResult){
+            res.redirect("/merch?success=1")
+        }
     })
 }
 

@@ -1,4 +1,14 @@
 <div class="top-header"><p>Our Merch</p></div>
+{{#if success}}
+<div class="success">
+    <p>Order placed successfuly</p>
+</div>
+{{/if}}
+{{#if error}}
+<div class="error">
+    <p>Something went wrong! Your Order was not placed</p>
+</div>
+{{/if}}
 <div class="merch-grid" class="container">
     <!-- To be automatically generated with the Hbs -->
     {{#everyNth merch 3}}
