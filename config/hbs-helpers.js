@@ -33,4 +33,16 @@ module.exports = {
             return options.inverse(this);
         }
     },
+
+    is_defined : function (value) {
+        return value !== undefined;
+    },
+
+    not_null : function (value) {
+        return value !== null;
+    },
+
+    equals : function (value, check) {
+        return value == check;
+    }
 }

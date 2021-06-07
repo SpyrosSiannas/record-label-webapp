@@ -2,7 +2,9 @@ const express = require('express');
 const reload = require('reload')
 const app = express();
 const exphbs = require('express-handlebars');
-const routes = require('./routes/router')
+const routes = require('./routes/router');
+var session = require("express-session");
+
 
 app.engine('hbs', exphbs({
     layoutsDir: __dirname + '/views/layouts',
@@ -12,8 +14,21 @@ app.engine('hbs', exphbs({
     helpers: require('./config/hbs-helpers.js')
 }));
 
+app.use(express.json());
+
+app.use(express.urlencoded({extended : true}));
+
 app.use(express.static(__dirname + '/public'));
-app.use('/', routes)
+
+
+
+app.use(session({
+	secret: 'secret',
+	resave: true,
+	saveUninitialized: true
+}))
+
+
 /** Heroku has the environment variable set 
     but the way we locally run the server, we don't
     so we set our local port to 80 and the heroku one
@@ -29,3 +44,4 @@ app.listen(process.env.PORT || 80, (error)=>{
 reload(app);
 
 app.set('view engine', 'hbs');
+app.use('/', routes);

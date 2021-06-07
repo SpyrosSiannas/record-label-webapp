@@ -5,10 +5,30 @@
     {{> header}}
     <link rel="stylesheet" href="styles/{{src}}.css">
 </head>
-<body>
+<body                 
+    {{#if (is_defined authError)}}
+        {{#if authError}}
+            onload="openLoginModal()"
+        {{/if}}
+    {{/if}}
+    {{#if (is_defined regError)}}
+        {{#if regError}}
+            onload="openSignupModal()"
+        {{/if}}
+    {{/if}}
+    {{#if (is_defined regError)}}
+        {{#unless regError}}
+            onload="closeSuccessMesasge()"
+        {{/unless}}
+    {{/if}}>
     {{> sidenav}}
     <div id="body-overlay" class="body-overlay"></div>
     <div id="main-panel" class="main-panel">
+        {{#if (is_defined regError)}}
+            {{#unless regError}}
+                <div class="reg-success"><p>Welcome to the family {{username}}!</p></div>
+            {{/unless}}
+        {{/if}}
         {{> navbar}}
         {{{body}}}
     </div>

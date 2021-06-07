@@ -121,7 +121,7 @@
     text-decoration: underline;
 }
 
-input:-webkit-autofill { 
+.modal-content .text-inputs input:-webkit-autofill { 
     -webkit-background-clip: text;
     background-clip: text;
 }
@@ -137,4 +137,13 @@ input:-webkit-autofill {
     .modal-content {
         width:90vw;
     }
+}
+
+.modal-content .error-message {
+    text-align: center;
+}
+
+.modal-content .error-message p {
+    font-weight: 600;
+    color:rgb(97, 19, 19);
 }

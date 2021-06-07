@@ -1,4 +1,14 @@
 <div class="top-header"><p>Our Merch</p></div>
+{{#if success}}
+<div class="success">
+    <p>Order placed successfuly</p>
+</div>
+{{/if}}
+{{#if error}}
+<div class="error">
+    <p>Something went wrong! Your Order was not placed</p>
+</div>
+{{/if}}
 <div class="merch-grid" class="container">
     <!-- To be automatically generated with the Hbs -->
     {{#everyNth merch 3}}
@@ -8,9 +18,54 @@
     {{#if isModZero}}
         <div class="row gx-2">
     {{/if}}
-            {{> product}}
+            {{> product logged=../logged}}
     {{#if isLast}}
         </div>
     {{/if}}
     {{/everyNth}}
 </div>
+{{#if logged}}
+{{#each merch}}
+    <div class="merch-modal modal" id="merch-modal-{{product_id}}">
+        <div class="merch-modal-content modal-content">
+            <div class="inner">
+                <form name="merchform" method="POST" action="/placeorder">
+                    <div class="main-content">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="modal-title">
+                                    <h1>CoffeeStained <br> Records </h1>
+                                </div> 
+                                <div class="product-info">
+                                    <img src="{{img_pr}}">
+                                    <h2 class="merch-modal-product-name">
+                                        {{title_pr}}<br>
+                                        {{price_pr}}
+                                    </h2>
+                                </div>
+                            </div>
+                            <div class="col-md align-self-center">
+                                <div class="text-inputs">
+                                    <input type="hidden" name="productPrice" value="{{price_pr}}">
+                                    <input type="hidden" name="productId" value="{{product_id}}">
+                                    <input type="hidden" name="userId" value="{{../userId}}">
+                                    <input type="number" placeholder="Telephone*" {{#if (not_null telephone)}}value="{{telephone}}"{{/if}}  name="telephone" required>
+                                    <input type="text" placeholder="Address*" {{#if (not_null street)}}value="{{street}}"{{/if}} name="street" required>
+                                    <input type="text" placeholder="City*" {{#if (not_null city)}}value="{{city}}"{{/if}} name="city" required>
+                                    <input type="number" placeholder="Postcode*" {{#if (not_null postal_code)}}value="{{postal_code}}"{{/if}} name="post_code" required>
+                                    <input type="text" placeholder="Country*" {{#if (not_null country)}}value="{{country}}"{{/if}} name="country" required>
+                                    <input type="text" placeholder="Province*" {{#if (not_null province)}}value="{{province}}"{{/if}} name="province" required>
+                                    <input type="text" placeholder="Appt/Suite" {{#if (not_null apt)}}value="{{apt}}"{{/if}}  name="apt">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <button><input class="place-order" type="submit" value="Place Order"></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{{/each}}
+{{/if}}

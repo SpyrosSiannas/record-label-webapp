@@ -28,12 +28,18 @@
                 </li>
             </ul>
             <ul id="navbar-bottom" class="nav navbar-right">
+                {{#unless logged}}
                 <li class="nav-item">
                     <a class="nav-link active" onclick="openSignupModal()" href="#">Sign up</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" onclick="openLoginModal()" href="#">Log in</a>
                 </li>
+                {{else}}
+                <li class="nav-item">
+                    <a class="nav-link active" onclick="openSideNav()" href="#">{{username}}</a>
+                </li>
+                {{/unless}}
             </ul>
         </div>
     </div>

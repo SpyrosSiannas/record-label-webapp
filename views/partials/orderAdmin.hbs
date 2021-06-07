@@ -1,0 +1,31 @@
+<div class="row order-container">
+    <div class="col">
+        <div class="row">
+            <p class="bold">ORDER No. {{order_id}}</p>
+            <p class="plain">Date ordered: {{date_ordered}}</p>
+            <p class="plain">{{price}}$</p>
+        </div>
+        <div class="row">
+            <p class="bold">Product Ordered:<p>
+            <p class="plain">ID: {{product_id}}</p>
+        </div>
+    </div>
+    <div class="col">
+        <div class="row">
+            <p class="bold">Ordered By<p>
+            <p class="plain">{{name}}</p>
+            <p class="plain">User ID: {{user_id}}</p>
+        </div>
+        <div class="row">
+            <p class="{{#if (equals Status 0)}}cancelled{{else if (equals Status 1)}}pending{{else}}delivered{{/if}}">
+            Status: 
+                {{#if (equals Status 0)}}Cancelled{{else if (equals Status 1)}}Pending{{else}}Delivered{{/if}}
+            </p>
+        </div>
+    </div>
+    <div class="col btn-col align-items-center">
+        <button onclick="deliverOrder({{order_id}}, {{user_id}})">Mark Delivered</button>
+        <button onclick="cancelOrder({{order_id}}, {{user_id}})">Cancel Order</button>
+    </div>  
+
+</div>

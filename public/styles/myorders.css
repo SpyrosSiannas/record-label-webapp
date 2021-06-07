@@ -1,0 +1,88 @@
+.top-header {
+    padding-top: 0.7rem;
+    text-align: center;
+    border-bottom: 4px solid black;
+    margin-bottom: 0.7rem;
+}
+
+.order-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.order-container {
+    width: 80%;
+    align-items: center;
+    border-bottom: 3px solid black;
+    padding-bottom: 0.7rem;
+}
+
+.img-container {
+    min-width: 150px;
+}
+
+.top-header p {
+    font-size: 40px;
+}
+
+.order-grid img {
+    width: 100%;
+    min-height: 150px;
+    max-height: 300px;
+}
+
+.bold {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.plain {
+    font-size: 22px;
+}
+
+.delivered {
+    color: darkgreen;
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.cancelled {
+    color: darkred;
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.pending {
+    color: darkorange;
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.btn-col{
+    text-align: center;
+}
+
+.btn-col button{
+   outline: 0;
+   border: 0;
+   background-color: black;
+   padding: 10px 11px;
+   color: white; 
+   border: 1px solid black;
+   transition: all 0.3s ease-in-out;
+}
+
+.btn-col button:hover{
+   outline: 0;
+   border: 0;
+   background-color: white;
+   padding: 10px 11px;
+   color: black; 
+}
+
+.middle-col {
+    line-height: 1.2rem;
+    padding: 0px 5px;
+}

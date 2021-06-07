@@ -1,0 +1,16 @@
+<div class="row justify-content-center order-container">
+    <div class="col img-container">
+        <img src={{ord_img}}>
+    </div>    
+    <div class="col-5 middle-col">
+        <p class="{{#if (equals Status 0)}}cancelled{{else if (equals Status 1)}}pending{{else}}delivered{{/if}}">
+            {{#if (equals Status 0)}}Cancelled{{else if (equals Status 1)}}Pending{{else}}Delivered{{/if}}
+        </p>
+        <p class="bold">ORDER No. {{order_id}}</p>
+        <p class="plain">Date ordered: {{date_ordered}}</p>
+        <p class="plain">{{ord_price}}$</p>
+    </div>
+    <div class="col btn-col align-items-center">
+        <button onclick="cancelOrder({{order_id}}, {{userId}})">Cancel Order</button>
+    </div>  
+</div>
