@@ -238,12 +238,11 @@ exports.register = (req, res) => {
                 req.session.loggedin = true;
                 req.session.username = sqlUsername;
                 req.session.regError = false;
-                req.session.userId,
+                req.session.userId = userId,
                 res.redirect('/');
             } else {
                 req.session.authError = undefined;
                 req.session.regError = true;
-                req.session.userId,
                 req.session.loggedin = false;
                 res.redirect(req.get('referer'));
             }
@@ -333,3 +332,44 @@ exports.disableSuccess = (req, res) => {
     req.session.regError = undefined;
     res.send()
 };
+
+exports.changePass = (req,res) => {
+    if (req.query.success){
+        var success = true;
+    }
+    if (req.query.error){
+        var error = true;
+    }
+    if (req.session.loggedin){
+       res.render('changepass', {
+            layout: 'main',
+            title: "Change Password",
+            src: 'changepass',
+            logged: req.session.loggedin,
+            username: req.session.username,
+            authError : req.session.authError,
+            regError: req.session.regError,
+            userId: req.session.userId,
+            isAdmin: req.session.isAdmin,
+            success: success,
+            error: error
+        })
+    } else {
+        res.redirect('/')
+    }
+}
+
+exports.changePassword = (req,res) => {
+    if (req.session.loggedin) {
+        const newPass = req.body.newpass;
+        const oldPass = req.body.oldpass
+        const userId = req.session.userId;
+        model.changePassword(newPass, oldPass, userId, (success)=>{
+            if (success){
+                res.redirect('/changePass?success=1')
+            } else {
+                res.redirect('/changePass?error=1')
+            }
+        })
+    }
+}

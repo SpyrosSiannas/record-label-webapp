@@ -4,7 +4,9 @@
     border-bottom: 4px solid black;
     margin-bottom: 0.7rem;
 }
-
+.top-header p {
+    font-size: 40px;
+}
 .order-grid {
     display: flex;
     justify-content: center;
