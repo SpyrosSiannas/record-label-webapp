@@ -99,15 +99,10 @@ exports.getOrders = function (user_id, callback) {
             const userOrder = res[i];
             const thisId = userOrder.ord_id;
             con.query(fetchOrderDetails, [thisId], (err2, res2) => {
-                                        console.log(err2)
-
                 con.query(fetchOrderProduct, [thisId], (err3, res3)=>{
-                                            console.log(err3)
-
                     const thisProductId = res3[0];
                     con.query(fetchProductDetails, [thisProductId.merch_id], (err4, res4)=>{
-                                                console.log(err4)
-
+                                                
                         const thisOrder = res2[0];
                         const thisMerch = res4[0];
                         finalCallback(thisOrder, thisId,thisMerch.img_pr,callback,orders,res.length)
@@ -171,7 +166,7 @@ exports.myAccount = function (userId, callback) {
     const sql = "SELECT * FROM User Where user_id = ?";
     con.query(sql, [userId], (err,res)=>{
         const thisUser = res[0];
-        console.log(thisUser)
+        
         callback(thisUser);
     })
     
@@ -196,7 +191,7 @@ exports.updateAcc = function (userId, newDetails, callback) {
         const str2 = detailFormatString.replace(/,$/, '');
         const sql = "UPDATE User SET " + str2 + " WHERE user_id = " + userId;
         con.query(sql, valsToKeep, (err,res)=>{
-            console.log(err);
+            ;
             callback(err,res);
         });
     });
@@ -274,7 +269,7 @@ exports.placeOrder = function(order, callback) {
         order.country,
         order.postcode,
         order.apt], (err,res1)=>{
-            console.log(res1)
+            
             con.query(getLastOrderSQL, (err, result) => {
                 var lastOrder = String(result[0]['MAX(order_id)']);
                 con.query(sqlRelationship, [lastOrder, order.userId], (error, res2)=>{
@@ -296,7 +291,7 @@ exports.cancelOrder = function(orderId, callback){
 exports.deliverOrder = function(orderId, callback){
     const sql = "UPDATE PurchaseOrder SET Status = 2 WHERE order_id = ?"
     con.query(sql, [Number(orderId)], (err, res)=>{
-        console.log(err,res)
+        
         callback()
     })
 }
