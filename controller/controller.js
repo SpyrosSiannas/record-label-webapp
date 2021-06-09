@@ -309,7 +309,7 @@ exports.updateAcc = (req,res) => {
 
 exports.clearOrder = (req, res)  => {
     if (req.session.loggedin) {
-        if (req.session.userId == req.query.userId){
+        if (req.session.userId == req.query.userId || user.session.isAdmin){
             model.cancelOrder(req.query.orderId, () => {
                 res.redirect('/myOrders');
             })
@@ -320,11 +320,9 @@ exports.clearOrder = (req, res)  => {
 
 exports.deliverOrder = (req, res)  => {
     if (req.session.loggedin && req.session.isAdmin) {
-        if (req.session.userId == req.query.userId){
-            model.deliverOrder(req.query.orderId, () => {
-                res.redirect('/manageOrders');
-            })
-        }
+        model.deliverOrder(req.query.orderId, () => {
+            res.redirect('/manageOrders');
+        })   
     }
 }
 
