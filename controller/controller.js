@@ -309,7 +309,7 @@ exports.updateAcc = (req,res) => {
 
 exports.clearOrder = (req, res)  => {
     if (req.session.loggedin) {
-        if ((req.session.userId == req.query.userId) ||(user.session.isAdmin)){
+        if ((req.session.userId == req.query.userId) ||(req.session.isAdmin)){
             model.cancelOrder(req.query.orderId, () => {
                 res.redirect(req.get('referer'));
             })
